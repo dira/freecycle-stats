@@ -1,3 +1,5 @@
+require 'md5'
+
 class Post < ActiveRecord::Base
   belongs_to :group
   enum_field "kind", [ "offer", "offer_completed", "request", "request_completed", "ignore" ]
@@ -30,8 +32,8 @@ class Post < ActiveRecord::Base
   end
 
   def self.offuscate_author(post)
-    require 'md5'
-    post.author_md5 = MD5.new(post.author_md5)
+    post.author_md5 = MD5.new(post.author_md5).to_s
     post.save
+    post
   end
 end
