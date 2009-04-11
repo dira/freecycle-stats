@@ -19,60 +19,6 @@ ActiveRecord::Schema.define(:version => 20090411185330) do
     t.datetime "updated_at"
   end
 
-  create_table "mails", :force => true do |t|
-    t.string   "message_id"
-    t.string   "subject_original"
-    t.string   "subject"
-    t.string   "kind"
-    t.string   "from"
-    t.string   "to"
-    t.string   "date"
-    t.string   "match_message_id"
-    t.integer  "match_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "mails_backup", :force => true do |t|
-    t.string   "message_id"
-    t.string   "subject_original"
-    t.string   "subject"
-    t.string   "kind"
-    t.string   "from"
-    t.string   "to"
-    t.string   "date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "mails_old", :force => true do |t|
-    t.string   "message_id"
-    t.string   "subject_original"
-    t.string   "subject"
-    t.string   "kind"
-    t.string   "from"
-    t.string   "to"
-    t.string   "date"
-    t.string   "match_message_id"
-    t.integer  "match_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "mails_old_backup", :force => true do |t|
-    t.string   "message_id"
-    t.string   "subject_original"
-    t.string   "subject"
-    t.string   "kind"
-    t.string   "from"
-    t.string   "to"
-    t.string   "date"
-    t.string   "match_message_id"
-    t.integer  "match_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "posts", :force => true do |t|
     t.string   "author_md5"
     t.date     "sent_date"
