@@ -55,8 +55,8 @@ Rails::Initializer.run do |config|
   # Make sure the secret is at least 30 characters and all random, 
   # no regular words or you'll be exposed to dictionary attacks.
   config.action_controller.session = {
-    :session_key => '_freecycle_session',
-    :secret      => '983a08dd97504579be460d3313a2a4a45b15d6a96fde6b92102f0103de6fed08a8b02da169e9fffdc092943ef3591bea87e9d5f1af142de501d9b2e8394e295e'
+    :session_key => '_freecycle_status_session',
+    :secret      => '983a08dd97504579be46e295e02f0103de6fe0d3313a2a4a45b15d6a96fde6b92187e9d5f1af142de501d9b2e8394d08a8b02da169e9fffdc092943ef3591bea'
   }
 
   # Use the database for sessions instead of the cookie-based default,
