@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090411185330) do
+ActiveRecord::Schema.define(:version => 20090411221452) do
 
   create_table "groups", :force => true do |t|
     t.string   "name"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20090411185330) do
     t.string   "subject_original"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "group_id"
   end
 
 end
