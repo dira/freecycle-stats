@@ -1,4 +1,5 @@
 require 'md5'
+require 'text'
 
 class Post < ActiveRecord::Base
   belongs_to :group
@@ -54,8 +55,21 @@ class Post < ActiveRecord::Base
 
   def self.are_pair?(first, second)
     return false if Post.kind_pair(first.kind) != second.kind
-    # potential match
-    return true if first.subject == second.subject
+
+    s1 = first.subject.downcase
+    s2 = second.subject.downcase
+
+    # equal
+    return true if s1 == s2
+
+    distance = Text::Levenshtein.distance(s1, s2)
+    lengths = [s1.length, s2.length]
+    sure_distance = lengths.max - lengths.min
+
+    if distance - sure_distance < lengths.min / 5
+      return true
+    end
+
     return false
   end
 
