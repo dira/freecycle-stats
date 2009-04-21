@@ -1,0 +1,8 @@
+%h1 Ce se da si ce se cere
+
+%h2 Grupuri freecycle
+
+%ul
+  - @groups.each do |group|
+    %li 
+      = link_to group.name, group_posts_path(group)
