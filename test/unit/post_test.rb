@@ -5,13 +5,14 @@ class PostTest < ActiveSupport::TestCase
   should_have_db_column :sent_date
   should_have_db_column :message_id
   should_have_db_column :kind
-  should_allow_values_for :kind, 'offer', 'offer_completed', 'request', 'request_completed', 'ignore' 
-  should_not_allow_values_for :kind, 'other', :message => "is invalid"
   should_have_db_column :subject
   should_have_db_column :subject_original
+
+  should_allow_values_for :kind, 'offer', 'offer_completed', 'request', 'request_completed', 'ignore' 
+  should_not_allow_values_for :kind, 'other', :message => "is invalid"
   
   should_belong_to :group
-  
+
   context 'setup from scraping:' do
     [
       {:subject_original => "[Freecycle Bucuresti] OFER: frigider vechi", :kind => 'offer', :subject => "frigider vechi"},
@@ -42,7 +43,7 @@ class PostTest < ActiveSupport::TestCase
         @initial_author = @post.author_md5
       end
       should 'change author string' do
-        assert_not_equal @initial_author, Post.offuscate_author(@post).author_md5
+        assert_not_equal @initial_author, Post.offuscate_author(@post.author_md5)
       end
     end
   end

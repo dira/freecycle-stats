@@ -28,12 +28,11 @@ class Post < ActiveRecord::Base
       subject[expr] = ''
     end
     post[:subject] = subject.strip
+    post[:subject_original] = subject_original
     return post
   end
 
-  def self.offuscate_author(post)
-    post.author_md5 = MD5.new(post.author_md5).to_s
-    post.save
-    post
+  def self.offuscate_author(author)
+    MD5.new(author).to_s
   end
 end

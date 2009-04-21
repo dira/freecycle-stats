@@ -1,0 +1,7 @@
+mail_server:
+  server: pop.gmail.com
+  port: 995
+
+Bucuresti:
+  username: 
+  password: 
