@@ -12,7 +12,8 @@ class PostTest < ActiveSupport::TestCase
   should_not_allow_values_for :kind, 'other', :message => "is invalid"
   
   should_belong_to :group
-
+  # should_have_one :pair # TODO not working
+  
   context 'setup from scraping:' do
     [
       {:subject_original => "[Freecycle Bucuresti] OFER: frigider vechi", :kind => 'offer', :subject => "frigider vechi"},
@@ -44,6 +45,20 @@ class PostTest < ActiveSupport::TestCase
       end
       should 'change author string' do
         assert_not_equal @initial_author, Post.offuscate_author(@post.author_md5)
+      end
+    end
+  end
+
+  context 'kinds' do
+    [
+      ['offer', 'offer_completed'],
+      ['offer_completed', 'offer'],
+      ['request', 'request_completed'],
+      ['request_completed', 'request'],
+      ['asd', nil]
+    ].each do | kind, answer |
+      should "get right pair for: #{kind}" do
+        assert_equal answer, Post.kind_pair(kind)
       end
     end
   end
