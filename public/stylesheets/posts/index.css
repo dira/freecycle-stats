@@ -1,6 +1,6 @@
 
 #offers, #requests {
-  width: 45%; }
+  width: 48%; }
 
 #offers {
   float: left; }
@@ -16,10 +16,17 @@
     height: 0;
     clear: both;
     visibility: hidden; }
+  #dashboard table {
+    width: 100%; }
   #dashboard td:hover {
     background-color: #f2c230; }
+    #dashboard td:hover .subject {
+      font-weight: bold; }
+    #dashboard td:hover .meta {
+      visibility: visible; }
   #dashboard .meta {
-    zoom: 1; }
+    zoom: 1;
+    visibility: hidden; }
     #dashboard .meta:after {
       content: ".";
       display: block;

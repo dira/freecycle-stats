@@ -27,14 +27,18 @@ body {
   padding: 10px 50px; }
 
 #container {
-  background-color: #fff; }
+  background-color: #fff;
+  min-height: 400px; }
 
 #footer {
   padding-top: 20px;
-  padding-bottom: 10px;
+  padding-bottom: 15px;
   text-align: center;
   background-color: #2da66d;
   color: white; }
+  #footer .credential {
+    margin: 0 20px;
+    display: inline; }
   #footer a {
     background-color: #2da66d;
     font-weight: bold; }
@@ -50,6 +54,9 @@ h1, h2, h3 {
 h1 {
   font-size: 2.5em;
   text-align: center; }
+  h1 a {
+    background-color: white;
+    color: #000; }
 
 h2 {
   font-size: 2em; }
@@ -63,7 +70,13 @@ td {
 p {
   margin: 3px 0; }
 
+.none {
+  display: none; }
+
 a {
   background-color: #f27405;
   color: white;
-  padding: 3px 5px; }
+  padding: 3px 5px;
+  text-decoration: none; }
+  a:hover {
+    text-decoration: underline; }

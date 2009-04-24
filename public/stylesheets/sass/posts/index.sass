@@ -1,16 +1,23 @@
 @import _mixins.sass
 #offers, #requests
-  width: 45%
+  width: 48%
 #offers
   float: left
 #requests
   float: right
 #dashboard
   +clearfix
+  table
+    width: 100%
   td:hover
     background-color: #f2c230
+    .subject
+      font-weight: bold 
+    .meta
+      visibility: visible
   .meta
     +clearfix
+    visibility: hidden
     .action
       float: left
     .sent_on

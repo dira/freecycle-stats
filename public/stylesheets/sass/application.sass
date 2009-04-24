@@ -28,12 +28,17 @@ body
 
 #container
   background-color: #fff
+  min-height: 400px
+
 #footer
   padding-top: 20px 
-  padding-bottom: 10px 
+  padding-bottom: 15px 
   text-align: center
   background-color: #2da66d
   color: white
+  .credential
+    margin: 0 20px
+    display: inline
   a
     background-color: #2da66d
     font-weight: bold
@@ -49,6 +54,9 @@ h1, h2, h3
 h1
   font-size: 2.5em
   text-align: center
+  a
+    background-color: white
+    color: #000
 h2
   font-size: 2em
 h3
@@ -57,6 +65,9 @@ td
   padding: 3px 5px
 p
   margin: 3px 0
+
+.none
+  display: none
 
 //pre 
   //background-color: #eee
@@ -67,6 +78,9 @@ a
   background-color: #f27405 
   color: white
   padding: 3px 5px
+  text-decoration: none
+  &:hover
+    text-decoration: underline
   //&:visited  
     //color: #666 
   //&a:hover  

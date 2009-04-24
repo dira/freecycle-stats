@@ -9,16 +9,20 @@
     -#%link{ 'rel' => 'icon', :sizes => '16x16', :href => '/favicon-16.png' }
 
     = stylesheet_link_tag "application" #, :cache => "cache/all"
+    = javascript_include_tag "vendor/prototype" #, :cache => "cache/all"
     = yield :head
 
   %body
     #container
-      %h1 Ce se da si ce se cere
+      %h1 
+        %a{ :href => '/' } Ce se da si ce se cere
 
       = yield
 
     #footer
-      o initiativa
-      %a{ :href => 'http://dira.ro' } dira.ro
-      &amp;
-      %a{ :href => 'http://steleverzi.wordpress.com' } stele verzi
+      .credential
+        concept: 
+        %a{ :href => 'http://steleverzi.wordpress.com' } stele verzi
+      .credential
+        implementare:
+        %a{ :href => 'http://dira.ro' } dira.ro
