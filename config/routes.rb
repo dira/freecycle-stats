@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.root :controller => "groups"
+  map.root :controller => "groups", :home => true
   map.resources :groups do |group|
     group.resources :posts
   end
