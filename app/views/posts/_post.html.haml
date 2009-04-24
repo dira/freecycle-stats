@@ -1,6 +1,11 @@
 %tr
   %td
-    = post.subject
-  %td
-    = time_ago_in_words(post.sent_date)
-    ago
+    %p
+      = post.subject
+    .meta
+      %p.action
+        %a{ :href => @group.web, :target => "_blank" }
+          = link_text
+      %p.sent_on
+        = time_ago_in_words(post.sent_date)
+        ago

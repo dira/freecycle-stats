@@ -1,0 +1,32 @@
+
+#offers, #requests {
+  width: 45%; }
+
+#offers {
+  float: left; }
+
+#requests {
+  float: right; }
+
+#dashboard {
+  zoom: 1; }
+  #dashboard:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  #dashboard td:hover {
+    background-color: #f2c230; }
+  #dashboard .meta {
+    zoom: 1; }
+    #dashboard .meta:after {
+      content: ".";
+      display: block;
+      height: 0;
+      clear: both;
+      visibility: hidden; }
+    #dashboard .meta .action {
+      float: left; }
+    #dashboard .meta .sent_on {
+      float: right; }

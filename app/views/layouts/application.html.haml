@@ -1,0 +1,24 @@
+!!!
+%html
+  %head
+    %meta{ 'http-equiv' => 'Content-Type', :content => 'text/html; charset=UTF-8' }
+    %title= html_title
+
+    -#%link{ 'rel' => 'shortcut icon', :href => '/favicon.ico' }
+    -#-# the png is shown by firefox in bookmarks menu, the ico in the other places
+    -#%link{ 'rel' => 'icon', :sizes => '16x16', :href => '/favicon-16.png' }
+
+    = stylesheet_link_tag "application" #, :cache => "cache/all"
+    = yield :head
+
+  %body
+    #container
+      %h1 Ce se da si ce se cere
+
+      = yield
+
+    #footer
+      o initiativa
+      %a{ :href => 'http://dira.ro' } dira.ro
+      &amp;
+      %a{ :href => 'http://steleverzi.wordpress.com' } stele verzi

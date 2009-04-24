@@ -1,11 +1,17 @@
+- content_for :head do
+  = stylesheet_link_tag "posts/index"
+    
 %h2
   = @group.name
 
-%h3 Ce se da
-%table
-  %tbody
-    = render :partial => @offers
-%h3 Ce se cere
-%table
-  %tbody
-    = render :partial => @requests
+#dashboard
+  #offers
+    %h3 Ce se da
+    %table
+      %tbody
+        = render :partial => @offers, :locals => { :link_text => 'il vreau' }
+  #requests
+    %h3 Ce se cere
+    %table
+      %tbody
+        = render :partial => @requests, :locals => { :link_text => 'vreau sa il dau eu' }
