@@ -27,6 +27,7 @@ class Matcher
 
             if Post.are_pair?(first, second)
               match_found = true
+              nr_matches += 1
 
               first.set_pair(second)
 
@@ -38,6 +39,7 @@ class Matcher
         break if !match_found
       end
     end
+    pp "#{nr_matches} matches"
   end
 end
 
