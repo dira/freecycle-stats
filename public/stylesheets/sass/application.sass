@@ -17,7 +17,7 @@ table, caption, tbody, tfoot, thead, tr, th, td
   vertical-align: baseline
 
 body 
-  font: 0.8em/1 "Lucida Grande", Calibri, Arial
+  font: 0.8em/1.2em "Lucida Grande", Calibri, Arial
   background-color: #444
   color: #3d3d3d
 
@@ -40,7 +40,7 @@ body
     margin: 0 20px
     display: inline
   a
-    background-color: #2da66d
+    color: white
     font-weight: bold
   
 
@@ -49,18 +49,19 @@ p, ol, ul, td, input
 
 h1, h2, h3
   font-family: Helvetica,Arial,sans-serif
-  line-height: 1.75
+  line-height: 2
   font-weight: bold
 h1
-  font-size: 2.5em
+  line-height: 3
   text-align: center
+  font-size: 2.5em
   a
-    background-color: white
     color: #000
 h2
   font-size: 2em
 h3
   font-size: 1.5em
+  margin-top: 20px
 td
   padding: 3px 5px
 p
@@ -69,18 +70,16 @@ p
 .none
   display: none
 
-//pre 
-  //background-color: #eee
-  //padding: 10px
-  //font-size: 11px
-
 a  
-  background-color: #f27405 
-  color: white
-  padding: 3px 5px
+  color: #f27405
   text-decoration: none
   &:hover
     text-decoration: underline
+a.important
+  background-color: #f27405
+  color: white
+  padding: 3px 5px
+
   //&:visited  
     //color: #666 
   //&a:hover  

@@ -1,4 +1,12 @@
 
+blockquote {
+  color: #777; }
+  blockquote img {
+    float: left;
+    width: 35%; }
+  blockquote p {
+    margin: 0 0 10px; }
+
 #offers, #requests {
   width: 48%; }
 

@@ -3,13 +3,34 @@
   = javascript_include_tag "posts/index"
     
 %h2
+  Freecyle
   = @group.name
+%blockquote
+  = link_freecycle(:image)
+  %p
+    = link_freecycle
+    este un grup destinat tuturor celor care vor sa 'recicleze' bunurile de care dispun in loc sa le arunce. Oferiti ce aveti fie ca este vorba de un scaun, un fax, un pian sau o usa veche, si lista ar putea continua. Sau poate ca sunteti in cautarea unui anumit bun! Organizatiile non-profit sunt si ele binevenite!
+  %p
+    O singura regula de baza: tot ce se ofera trebuie sa fie cu titlu gratuit.
+  %p
+    Acest grup face parte din reteaua
+    = link_freecycle
+    , o organizatie non-profit si o miscare a celor care nu doresc sa ingroase straturile gropilor de gunoi.
+
+%h3 Ce se da &amp; ce se cere - ACUM
+%p
+  Mai jos gasiti ofertele si cererile curente, fara obiectele care s-au dat/luat deja. Este o modalitate mai usoara de a vizualiza ce e de actualitate pe grup, in ansamblu.
+%p
+  Continutul tabelului se actualizeaza o data la cateva ore si contine doar titlul postului si data la care a fost facut.<br/>
+  Pentru a oferi/cere obiecte efectiv trebuie sa va inscrieti pe
+  = link_to 'pagina grupului', @group.web
+  \.
 
 #dashboard
   #offers
     %h3 Ce se da
     %p.action.none
-      %a{ :href => @group.web, :target => "_blank" } n-am.. si vreau!
+      %a.important{ :href => @group.web, :target => "_blank" } n-am.. si vreau!
     %table
       %thead
         %tr
@@ -21,7 +42,7 @@
   #requests
     %h3 Ce se cere
     %p.action.none
-      %a{ :href => @group.web, :target => "_blank" } am.. si dau! 
+      %a.important{ :href => @group.web, :target => "_blank" } am.. si dau!
     %table
       %thead
         %tr
