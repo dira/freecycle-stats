@@ -18,6 +18,14 @@
     visibility: hidden; }
   #dashboard table {
     width: 100%; }
+  #dashboard thead tr, #dashboard tr.head {
+    background-color: #ddd; }
+    #dashboard thead tr td:hover,     #dashboard tr.head td:hover {
+      background-color: #ddd; }
+  #dashboard thead .continue {
+    display: none; }
+  #dashboard tr.head .continue {
+    display: inline; }
   #dashboard td:hover {
     background-color: #f2c230; }
     #dashboard td:hover .subject {

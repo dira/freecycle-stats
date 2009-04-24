@@ -11,6 +11,11 @@
     %p.action.none
       %a{ :href => @group.web, :target => "_blank" } n-am.. si vreau!
     %table
+      %thead
+        %tr
+          %td
+            obiect oferit
+            .continue (continuare)
       %tbody
         = render :partial => @offers
   #requests
@@ -18,5 +23,10 @@
     %p.action.none
       %a{ :href => @group.web, :target => "_blank" } am.. si dau! 
     %table
+      %thead
+        %tr
+          %td
+            obiect cautat
+            .continue (continuare)
       %tbody
         = render :partial => @requests
