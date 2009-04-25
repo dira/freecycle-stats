@@ -3,6 +3,14 @@
 
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
+  before_filter :set_locale
+
+  def set_locale
+    locale = params[:locale] || 'ro-RO'
+    I18n.locale = locale
+    I18n.load_path += Dir[ File.join(RAILS_ROOT, 'lib', 'locale', '*.{rb,yml}') ]
+  end
+
 
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store

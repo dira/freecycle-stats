@@ -1,0 +1,39 @@
+# rails - translation/localization for time_ago_in_words - Romanian
+ro-RO:
+  datetime:
+    distance_in_words:
+      less_than_x_minutes:
+        one: 'mai putin de 1 minut'
+        other: 'mai putin de {{count}} minute'
+      x_minutes: 
+        one: '1 minut'
+        other: '{{count}} minute'
+      less_than_x_seconds:
+         one: 'mai putin de 1 secunda'
+         other: 'mai putin de {{count}} de secunde'
+      half_a_minute:
+         other: 'mai putin de 30 secunde'
+      less_than_x_minutes:
+         one: 'mai putin de 1 minut'
+         other: 'mai putin de {{count}} minute'
+      x_minutes:
+         one: '1 minut'
+         other: '{{count}} minute'
+      about_x_hours:
+         one: '1 ora'
+         other: '{{count}} ore'
+      x_days:
+         one: '1 zi'
+         other: '{{count}} zile'
+      about_x_months:
+         one: '1 luna'
+         other: '{{count}} luni'
+      x_months:
+         one: '1 luna'
+         other: '{{count}} luni'
+      about_x_years:
+         one: '1 an'
+         other: '{{count}} ani'
+      over_x_years:
+         one: 'mai mult de 1 an'
+         other: 'mai mult de {{count}} ani'
