@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090421204506) do
+ActiveRecord::Schema.define(:version => 20090427132029) do
 
   create_table "groups", :force => true do |t|
     t.string   "name"
@@ -19,58 +19,28 @@ ActiveRecord::Schema.define(:version => 20090421204506) do
     t.datetime "updated_at"
   end
 
-  create_table "mails", :force => true do |t|
-    t.string   "message_id"
-    t.string   "subject_original"
-    t.string   "subject"
-    t.string   "kind"
-    t.string   "from"
-    t.string   "to"
-    t.string   "date"
-    t.string   "match_message_id"
-    t.integer  "match_id"
+  create_table "identity_urls", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "url",        :limit => 100
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "mails_backup", :force => true do |t|
-    t.string   "message_id"
-    t.string   "subject_original"
-    t.string   "subject"
-    t.string   "kind"
-    t.string   "from"
-    t.string   "to"
-    t.string   "date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  add_index "identity_urls", ["url"], :name => "index_identity_urls_on_url", :unique => true
+
+  create_table "open_id_authentication_associations", :force => true do |t|
+    t.integer "issued"
+    t.integer "lifetime"
+    t.string  "handle"
+    t.string  "assoc_type"
+    t.binary  "server_url"
+    t.binary  "secret"
   end
 
-  create_table "mails_old", :force => true do |t|
-    t.string   "message_id"
-    t.string   "subject_original"
-    t.string   "subject"
-    t.string   "kind"
-    t.string   "from"
-    t.string   "to"
-    t.string   "date"
-    t.string   "match_message_id"
-    t.integer  "match_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "mails_old_backup", :force => true do |t|
-    t.string   "message_id"
-    t.string   "subject_original"
-    t.string   "subject"
-    t.string   "kind"
-    t.string   "from"
-    t.string   "to"
-    t.string   "date"
-    t.string   "match_message_id"
-    t.integer  "match_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "open_id_authentication_nonces", :force => true do |t|
+    t.integer "timestamp",  :null => false
+    t.string  "server_url"
+    t.string  "salt",       :null => false
   end
 
   create_table "posts", :force => true do |t|
@@ -86,40 +56,13 @@ ActiveRecord::Schema.define(:version => 20090421204506) do
     t.integer  "pair_id"
   end
 
-  create_table "posts_backup", :force => true do |t|
-    t.string   "author_md5"
-    t.date     "sent_date"
-    t.string   "message_id"
-    t.string   "kind"
-    t.string   "subject"
-    t.string   "subject_original"
+  create_table "users", :force => true do |t|
+    t.string   "nickname"
+    t.string   "email"
+    t.string   "remember_token",            :limit => 40
+    t.datetime "remember_token_expires_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "group_id"
-  end
-
-  create_table "posts_backup2", :force => true do |t|
-    t.string   "author_md5"
-    t.date     "sent_date"
-    t.string   "message_id"
-    t.string   "kind"
-    t.string   "subject"
-    t.string   "subject_original"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "group_id"
-  end
-
-  create_table "posts_backup3", :force => true do |t|
-    t.string   "author_md5"
-    t.date     "sent_date"
-    t.string   "message_id"
-    t.string   "kind"
-    t.string   "subject"
-    t.string   "subject_original"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "group_id"
   end
 
 end

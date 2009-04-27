@@ -1,7 +1,20 @@
 ActionController::Routing::Routes.draw do |map|
+  map.open_id_complete 'session', :controller => 'sessions', :action => 'create', :requirements => { :method => :get }
+  map.resource  :session
+
+  map.login  '/login',  :controller => 'sessions', :action => 'new'
+  map.logout '/logout', :controller => 'sessions', :action => 'destroy'
+
+
+
   map.root :controller => "groups", :home => true
   map.resources :groups do |group|
     group.resources :posts
+  end
+
+  map.namespace(:admin) do |admin|
+    admin.root :controller => 'posts'
+    admin.resources :posts, :collection => { :search => :get }
   end
 
 

@@ -1,0 +1,27 @@
+!!!
+%html
+  %head
+    %meta{ 'http-equiv' => 'Content-Type', :content => 'text/html; charset=UTF-8' }
+    %title= html_title
+
+    = stylesheet_link_tag "application" #, :cache => "cache/all"
+    = javascript_include_tag "vendor/prototype" #, :cache => "cache/all"
+    = yield :head
+
+    = javascript_include_tag "https://rpxnow.com/openid/v2/widget"
+    :javascript
+      RPXNOW.token_url = "http://example.com/your_token_url";
+      RPXNOW.realm = "ce-se-da";
+      RPXNOW.overlay = true;
+      RPXNOW.language_preference = 'en';
+
+  %body
+    #container
+      #auth
+        %a.rpxnow{ :onclick => "return false;", :href => "https://ce-se-da.rpxnow.com/openid/v2/signin?token_url=your_token_url"} Sign In
+
+      %h1 
+        %a{ :href => '/' } Ce se da &amp; ce se cere - ADMIN
+
+      = yield
+

@@ -1,0 +1,37 @@
+&raquo; 
+= link_to 'back to index', admin_posts_path
+%h2 Anunt
+= @post.kind
+=h @post.subject
+
+- if !@candidates.empty?
+  %h2 Candidates from the same author
+  - form_for @post, :url => admin_post_path(@post) do |f|
+    - @candidates.each do |p|
+      %div
+        = check_box_tag 'post[pair_id]', p.id, true
+        = p.kind
+        =h p.subject
+    = submit_tag
+
+%h2 Search
+- form_tag search_admin_posts_path do
+  = hidden_field_tag 'id', @post.id
+  = text_field_tag 'term', @term
+  = submit_tag 'search'
+
+- if @search_results
+  %h2 Search results
+  - form_for @post, :url => admin_post_path(@post) do |f|
+    %table
+      - @search_results.each do |p|
+        %tr
+          %td
+            = p.kind
+          %td
+            =h p.subject
+          %td
+            =h p.sent_date - @post.sent_date
+          %td
+            = check_box_tag 'post[pair_id]', p.id
+    = submit_tag
