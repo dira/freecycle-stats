@@ -8,7 +8,7 @@ class PostTest < ActiveSupport::TestCase
   should_have_db_column :subject
   should_have_db_column :subject_original
 
-  should_allow_values_for :kind, 'offer', 'offer_completed', 'request', 'request_completed', 'ignore' 
+  should_allow_values_for :kind, ['offer', 'offer_completed', 'request', 'request_completed', 'ignore']
   should_not_allow_values_for :kind, 'other', :message => "is invalid"
   
   should_belong_to :group
@@ -45,6 +45,16 @@ class PostTest < ActiveSupport::TestCase
       end
       should 'change author string' do
         assert_not_equal @initial_author, Post.offuscate_author(@post.author_md5)
+      end
+    end
+
+    context 'extra test for kinds' do
+      setup do
+        @post = Post.new()
+      end
+      should 'allow nil kind' do
+        @post.valid? # trigger check
+        assert_equal nil, @post.errors['kind']
       end
     end
   end

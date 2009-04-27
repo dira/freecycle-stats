@@ -10,7 +10,7 @@ class Post < ActiveRecord::Base
     ["request", "request_completed"]
   ]
   
-  enum_field "kind", KIND_PAIRS.flatten + [ "ignore" ]
+  enum_field "kind", KIND_PAIRS.flatten + [ "ignore" ], :allow_nil => true
 
   def self.kind_pair(kind)
     KIND_PAIRS.each do |p|
