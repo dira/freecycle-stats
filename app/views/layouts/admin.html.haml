@@ -5,15 +5,7 @@
     %title= html_title
 
     = stylesheet_link_tag "application" #, :cache => "cache/all"
-    = javascript_include_tag "vendor/prototype" #, :cache => "cache/all"
     = yield :head
-
-    = javascript_include_tag "https://rpxnow.com/openid/v2/widget"
-    :javascript
-      RPXNOW.token_url = "http://example.com/your_token_url";
-      RPXNOW.realm = "ce-se-da";
-      RPXNOW.overlay = true;
-      RPXNOW.language_preference = 'en';
 
   %body
     #container
