@@ -33,7 +33,7 @@ class Admin::PostsController < ApplicationController
 
   def search
     @term = params[:term]
-    @search_results = Post.all(:conditions => ['subject ILIKE ? AND pair_id IS NULL', "%#{@term}%"])
+    @search_results = Post.all(:conditions => ['subject LIKE ? AND pair_id IS NULL', "%#{@term}%"])
     @search_results = filter_current(@search_results, @post)
 
     show
