@@ -4,5 +4,5 @@ vendor/plugins/enum_field:
   url: git://github.com/dira/enum_field.git
   branch: master
   type: git
-  revision: fe65090e6588af03697b2779b06b5d840f5cbc16
+  revision: e7794152ec38c16227ffb650fef2ec01bacda326
   remote: braid/vendor/plugins/enum-field

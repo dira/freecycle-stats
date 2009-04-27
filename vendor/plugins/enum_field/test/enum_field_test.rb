@@ -14,7 +14,7 @@ class EnumFieldTest < Test::Unit::TestCase
   context "with a simple gender enum" do
     setup do
       @possible_values = %w( male female )
-      MockedModel.expects(:validates_inclusion_of).with(:gender, :in => @possible_values, :message => "invalid gender")
+      MockedModel.expects(:validates_inclusion_of).with(:gender, :in => @possible_values, :message => "is invalid")
       MockedModel.send(:enum_field, :gender, @possible_values)
     end
   
