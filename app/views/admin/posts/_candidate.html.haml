@@ -1,0 +1,16 @@
+- form_for post, :url => admin_post_path(post) do |f|
+  %table
+    - all_posts.each do |p|
+      %tr
+        %td
+          = p.kind
+        %td
+          =h p.subject
+        %td
+          =h p.sent_date
+        %td
+          date difference:
+          = p.sent_date - post.sent_date
+        %td
+          = radio_button_tag 'post[pair_id]', p.id
+  = submit_tag
