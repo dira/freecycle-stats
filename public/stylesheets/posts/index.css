@@ -36,8 +36,6 @@ blockquote {
     display: inline; }
   #dashboard td:hover {
     background-color: #f2c230; }
-    #dashboard td:hover .subject {
-      font-weight: bold; }
     #dashboard td:hover .meta {
       visibility: visible; }
   #dashboard .meta {
