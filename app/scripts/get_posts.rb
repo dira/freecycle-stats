@@ -1,5 +1,5 @@
 require 'tmail'
-require 'net/pop'
+require 'net/pop_ssl'
 require 'pp'
 
 class MailHeaderFetcher
