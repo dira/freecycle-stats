@@ -72,4 +72,20 @@ class PostTest < ActiveSupport::TestCase
       end
     end
   end
+
+  context 'update pair_id' do
+      setup do
+        # TODO factory not working, why oh why
+        @post1 = Post.new(:author_md5 => 'gigi', :kind => 'request')
+        @post1.save!
+        @post2 = Post.new(:author_md5 => 'gigi', :kind => 'request')
+        @post2.save!
+
+        @post1.pair_id = @post2.id
+      end
+      should 'update pair id for the other post' do
+        assert_equal @post2.id, Post.find(@post1.id).pair_id
+        assert_equal @post1.id, Post.find(@post2.id).pair_id
+      end
+  end
 end

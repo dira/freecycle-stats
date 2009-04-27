@@ -12,6 +12,14 @@ class Post < ActiveRecord::Base
   
   enum_field "kind", KIND_PAIRS.flatten + [ "ignore" ], :allow_nil => true
 
+  def pair_id=(pid)
+    pair = Post.find(pid)
+    self[:pair_id] = pid
+    self.save!
+    pair[:pair_id] = self.id
+    pair.save!
+  end
+
   def self.kind_pair(kind)
     KIND_PAIRS.each do |p|
       if p.include?(kind)
@@ -75,9 +83,5 @@ class Post < ActiveRecord::Base
 
   def set_pair(message)
     self.pair_id = message.id
-    self.save!
-
-    message.pair_id = self.id
-    message.save!
   end
 end
