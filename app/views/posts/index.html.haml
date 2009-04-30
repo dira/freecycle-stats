@@ -23,14 +23,14 @@
 %p
   Continutul tabelului se actualizeaza o data la cateva ore si contine doar titlul postului si data la care a fost facut.<br/>
   Pentru a oferi/cere obiecte efectiv trebuie sa va inscrieti pe
-  = link_to 'pagina grupului', @group.web
+  = link_to 'pagina grupului', @group.web, :class => 'minor'
   \.
 
 #dashboard
   #offers
     %h3 Ce se da
     %p.action.none
-      %a.important{ :href => @group.web, :target => "_blank" } n-am.. si vreau!
+      %a{ :href => @group.web, :target => "_blank" } n-am.. si vreau!
     %table
       %thead
         %tr
@@ -42,7 +42,7 @@
   #requests
     %h3 Ce se cere
     %p.action.none
-      %a.important{ :href => @group.web, :target => "_blank" } am.. si dau!
+      %a{ :href => @group.web, :target => "_blank" } am.. si dau!
     %table
       %thead
         %tr

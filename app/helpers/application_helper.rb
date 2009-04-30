@@ -8,7 +8,7 @@ module ApplicationHelper
 
   def link_freecycle(what=:text)
     contents = (what == :text ? 'Freecycle®' : image_tag('freecycle-logo.jpg') )
-    link_to contents, 'http://www.freecycle.org/', :target => '_blank'
+    link_to contents, 'http://www.freecycle.org/', :target => '_blank', :class => 'minor'
   end
 
 end

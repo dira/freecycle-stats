@@ -21,13 +21,15 @@ body
   background-color: #444
   color: #3d3d3d
 
-#container, #footer
+#container
   width: 850px
   margin: 0 auto
-  padding: 10px 50px
+#main, #header, #footer
+  padding: 0 50px
 
 #container
   background-color: #fff
+#main
   min-height: 400px
 
 #footer
@@ -70,15 +72,19 @@ p
 .none
   display: none
 
-a  
-  color: #f27405
-  text-decoration: none
-  &:hover
-    text-decoration: underline
-a.important
-  background-color: #f27405
-  color: white
-  padding: 3px 5px
+#main 
+  a
+    background-color: #f27405
+    color: white
+    padding: 3px 5px
+  a.minor
+    background-color: white
+    color: #f27405
+    text-decoration: none
+    padding: 0 0
+    &:hover
+      text-decoration: underline
+
 
   //&:visited  
     //color: #666 

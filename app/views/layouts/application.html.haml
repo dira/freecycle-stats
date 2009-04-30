@@ -17,12 +17,13 @@
       %h1 
         %a{ :href => '/' } Ce se da &amp; ce se cere
 
-      = yield
+      #main
+        = yield
 
-    #footer
-      .credential
-        concept: 
-        %a{ :href => 'http://steleverzi.wordpress.com' } stele verzi
-      .credential
-        implementare:
-        %a{ :href => 'http://dira.ro' } dira.ro
+      #footer
+        .credential
+          concept: 
+          %a{ :href => 'http://steleverzi.wordpress.com' } stele verzi
+        .credential
+          implementare:
+          %a{ :href => 'http://dira.ro' } dira.ro
