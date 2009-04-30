@@ -57,7 +57,7 @@ class Post < ActiveRecord::Base
     return post
   end
 
-  def self.offuscate_author(author)
+  def self.obfuscate_author(author)
     MD5.new(author).to_s
   end
 

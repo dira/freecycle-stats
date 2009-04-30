@@ -37,14 +37,14 @@ class PostTest < ActiveSupport::TestCase
       end
     end
 
-    context 'offuscate author' do
+    context 'obfuscate author' do
       setup do
         # TODO factory not working, why oh why
         @post = Post.new(:author_md5 => 'gigi', :kind => 'request')
         @initial_author = @post.author_md5
       end
       should 'change author string' do
-        assert_not_equal @initial_author, Post.offuscate_author(@post.author_md5)
+        assert_not_equal @initial_author, Post.obfuscate_author(@post.author_md5)
       end
     end
 
