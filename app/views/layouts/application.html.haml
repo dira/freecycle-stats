@@ -4,18 +4,14 @@
     %meta{ 'http-equiv' => 'Content-Type', :content => 'text/html; charset=UTF-8' }
     %title= html_title
 
-    -#%link{ 'rel' => 'shortcut icon', :href => '/favicon.ico' }
-    -#-# the png is shown by firefox in bookmarks menu, the ico in the other places
-    -#%link{ 'rel' => 'icon', :sizes => '16x16', :href => '/favicon-16.png' }
-
-    = stylesheet_link_tag "application" #, :cache => "cache/all"
-    = javascript_include_tag "vendor/prototype" #, :cache => "cache/all"
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "vendor/prototype"
     = yield :head
 
   %body
     #container
       %h1 
-        %a{ :href => '/' } Ce se da &amp; ce se cere
+        = link_to "Ce se da &amp; ce se cere", '/'
 
       #main
         = yield
@@ -23,7 +19,7 @@
       #footer
         .credential
           concept: 
-          %a{ :href => 'http://steleverzi.wordpress.com' } stele verzi
+          = link_to 'stele verzi', 'http://steleverzi.wordpress.com', :target => "_blank"
         .credential
           implementare:
-          %a{ :href => 'http://dira.ro' } dira.ro
+          = link_to 'dira.ro', 'http://dira.ro', :target => "_blank"

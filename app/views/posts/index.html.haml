@@ -30,7 +30,7 @@
   #offers
     %h3 Ce se da
     %p.action.none
-      %a{ :href => @group.web, :target => "_blank" } n-am.. si vreau!
+      = link_to 'n-am.. si vreau!', @group.web, :target => "_blank"
     %table
       %thead
         %tr
@@ -42,7 +42,7 @@
   #requests
     %h3 Ce se cere
     %p.action.none
-      %a{ :href => @group.web, :target => "_blank" } am.. si dau!
+      = link_to 'am.. si dau!', @group.web, :target => "_blank"
     %table
       %thead
         %tr
