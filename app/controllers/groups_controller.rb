@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
   def index
     @groups = Group.find(:all)
-    redirect_to :controller => 'posts', :action => 'index', :group_id => @groups[0].to_param if !@groups.empty? && params[:home]
+    redirect_to group_posts_path(@groups[0].to_param) if @groups.size == 1
   end
 end

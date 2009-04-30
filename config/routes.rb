@@ -7,7 +7,7 @@ ActionController::Routing::Routes.draw do |map|
 
 
 
-  map.root :controller => "groups", :home => true
+  map.root :controller => "home"
   map.resources :groups do |group|
     group.resources :posts
   end
