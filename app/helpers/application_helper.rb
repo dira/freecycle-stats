@@ -6,7 +6,7 @@ module ApplicationHelper
     title
   end
 
-  def link_freecycle(what=nil)
+  def freecycle_link(what=nil)
     contents =
       case(what || :text)
         when :text
