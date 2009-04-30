@@ -2,12 +2,8 @@ class PostsController < ApplicationController
   before_filter :set_group
 
   def index
-    limit = 25
-    options = {
-      :limit => limit, :order => "sent_date DESC"
-    }
-    @offers = @group.posts.all(options.merge( {:conditions => { :kind => 'offer' } }))
-    @requests = @group.posts.all(options.merge( {:conditions => { :kind => 'request' } }))
+    @offers = Post.offers.recent.recent_first
+    @requests = Post.requests.recent.recent_first
   end
 
 private

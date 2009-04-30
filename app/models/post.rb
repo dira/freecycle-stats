@@ -11,6 +11,10 @@ class Post < ActiveRecord::Base
   ]
   
   enum_field "kind", KIND_PAIRS.flatten + [ "ignore" ], :allow_nil => true
+  named_scope :offers, :conditions => { :kind => "offer" }
+  named_scope :requests, :conditions => { :kind => "request" }
+  named_scope :recent_first, :order => "sent_date DESC"
+  named_scope :recent, :limit => 25
 
   def pair_id=(pid)
     pair = Post.find(pid)
