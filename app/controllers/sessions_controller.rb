@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
           :optional => [:nickname, :email]) do |result, identity_url, registration|
         if !result.successful?
           flash.now[:error] = result.message
-          render(:action => 'new')
+          render :new
         else
           identity_url_model = IdentityUrl.find_or_create_by_url(identity_url)
           if identity_url_model.user.nil?
@@ -25,7 +25,7 @@ class SessionsController < ApplicationController
         end
       end
     else
-      render(:action => 'new')
+      render :new
     end
   end
 

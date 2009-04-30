@@ -37,7 +37,7 @@ class Admin::PostsController < ApplicationController
     @search_results = filter_current(@search_results, @post)
 
     show
-    render :action => :show
+    render :show
   end
   
 private
