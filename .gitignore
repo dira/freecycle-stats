@@ -1,3 +1,4 @@
 log/*.*
 tmp/*.*
 backup
+config/session_secret.txt
