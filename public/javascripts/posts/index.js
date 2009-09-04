@@ -3,19 +3,16 @@ Event.observe(window, 'load', function() { init() });
 function init() {
   var dashboard = $('dashboard');
 
-  dashboard.select('#offers,#requests').each(function(tab){
-    // add links to the group
+  dashboard.select('#offers, #requests').each(function(tab){
+    // don't want to be considered spammers - so add the hundred links dynamically
     var action = tab.down('.action');
-    tab.select('.post .meta').each(function(meta){
-      Element.insert(meta, { top : action.cloneNode(true) });
-    });
-    // and make them visible
-    tab.select('.post .meta .action').each(function(action) { 
-      action.removeClassName('none');
+    tab.select('td .meta').each(function(meta){
+      var duplicate = action.cloneNode(true).show();
+      Element.insert(meta, { top :  duplicate});
     });
 
     // duplicate header
-    var posts = tab.select('.post');
+    var posts = tab.select('td');
     var duplicate_header_after = 9;
     var header = tab.down('thead tr');
     for (var i = duplicate_header_after - 1; i < posts.length - 1; i += duplicate_header_after) {

@@ -7,13 +7,7 @@ module ApplicationHelper
   end
 
   def freecycle_link(what=nil)
-    contents =
-      case(what || :text)
-        when :text
-          'Freecycle®'
-        when :image
-          image_tag('freecycle-logo.jpg')
-      end
-    link_to contents, 'http://www.freecycle.org/', :target => '_blank', :class => 'minor'
+    name = (what == nil || what == :text) ? 'Freecycle®' : image_tag('freecycle-logo.jpg')
+    link_to name, 'http://www.freecycle.org/', :target => '_blank', :class => 'minor'
   end
 end

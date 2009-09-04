@@ -26,8 +26,7 @@
 #dashboard
   #offers
     %h3 Ce se da
-    %p.action.none
-      = link_to 'n-am.. si vreau!', @group.web, :target => "_blank"
+    = link_to 'n-am.. si vreau!', @group.web, :target => "_blank", :class => "action", :style => "display:none"
     %table
       %thead
         %tr
@@ -38,8 +37,7 @@
         = render @offers
   #requests
     %h3 Ce se cere
-    %p.action.none
-      = link_to 'am.. si dau!', @group.web, :target => "_blank"
+    = link_to 'am.. si dau!', @group.web, :target => "_blank", :class => "action", :style => "display:none"
     %table
       %thead
         %tr
