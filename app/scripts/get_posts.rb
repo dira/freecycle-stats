@@ -32,7 +32,8 @@ class GetPosts
       hash = Post.parse_subject(mail.subject)
       hash[:group_id] = group.id
       hash[:message_id] = mail.message_id
-      hash[:author_md5] = Post.obfuscate_author(mail.from[0])
+      from = mail.from[0] rescue ''
+      hash[:author_md5] = Post.obfuscate_author(from)
       hash[:sent_date] = mail.date 
       Post.find_or_create_by_message_id(hash) 
     end
