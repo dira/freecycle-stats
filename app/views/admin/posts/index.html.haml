@@ -1,5 +1,5 @@
 %h2 Without kind
-%ol
+%ol#without_kind
   - @unknown_kind.each do |p|
     %li
       = link_to p.subject, admin_post_path(p)
@@ -7,13 +7,11 @@
       acum
       = time_ago_in_words(p.sent_date)
       
-      - form_for p, :url => admin_post_path(p) do |f|
-        = hidden_field_tag('post[kind]', 'offer')
-        = submit_tag 'offer'
-      - form_for p, :url => admin_post_path(p) do |f|
-        = hidden_field_tag('kind', 'request')
-        = submit_tag 'request'
-    
+      .kinds
+        - Post::KINDS.each do |kind|
+          - form_for p, :url => admin_post_path(p) do |f|
+            = f.hidden_field :kind, :value => kind
+            = submit_tag kind
 
 %h2 Unmatched posts
 %ol

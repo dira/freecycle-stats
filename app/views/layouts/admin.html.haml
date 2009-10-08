@@ -4,13 +4,14 @@
     %meta{ 'http-equiv' => 'Content-Type', :content => 'text/html; charset=UTF-8' }
     %title= html_title
 
-    = stylesheet_link_tag "application" #, :cache => "cache/all"
+    = stylesheet_link_tag "application", "admin" #, :cache => "cache/all"
     = yield :head
 
   %body
     #container
       %h1 
         = link_to "Ce se da &amp; ce se cere", '/'
-
       #main
         = yield
+
+      #footer

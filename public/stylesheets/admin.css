@@ -1,0 +1,12 @@
+#without_kind .kinds {
+  zoom: 1;
+  margin: 10px 0 20px; }
+  #without_kind .kinds:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  #without_kind .kinds form {
+    float: left;
+    margin-right: 20px; }
