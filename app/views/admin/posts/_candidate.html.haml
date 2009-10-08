@@ -9,8 +9,9 @@
         %td
           =h p.sent_date
         %td
-          date difference:
-          = p.sent_date - post.sent_date
+          trimis cu
+          = post.sent_date - p.sent_date
+          zile inainte
         %td
           = radio_button_tag 'post[pair_id]', p.id
   = submit_tag

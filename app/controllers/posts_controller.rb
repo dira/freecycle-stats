@@ -2,8 +2,8 @@ class PostsController < ApplicationController
   before_filter :set_group
 
   def index
-    @offers = Post.recent_offers
-    @requests = Post.recent_requests
+    @offers =   Post.last_offers
+    @requests = Post.last_requests
   end
 
 private
