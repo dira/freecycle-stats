@@ -9,8 +9,11 @@ class Post < ActiveRecord::Base
     ["offer", "offer_completed"],
     ["request", "request_completed"]
   ]
-  
-  enum_field "kind", KIND_PAIRS.flatten + [ "ignore" ], :allow_nil => true
+  KIND_OTHERS = ["admin"]
+
+  KINDS = KIND_OTHERS + KIND_PAIRS.flatten
+  enum_field "kind", KINDS, :allow_nil => true
+
   named_scope :recent_offers,   :conditions => { :kind => "offer" }, :limit => 25, :order => "sent_date DESC"
   named_scope :recent_requests, :conditions => { :kind => "request" }, :limit => 25, :order => "sent_date DESC"
 
