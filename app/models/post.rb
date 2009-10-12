@@ -2,6 +2,8 @@ require 'md5'
 require 'text'
 
 class Post < ActiveRecord::Base
+  include Matcher
+
   belongs_to :group
   has_one :pair, :class_name => 'Post'
 
@@ -53,35 +55,6 @@ class Post < ActiveRecord::Base
     return nil
   end
 
-  def self.parse_subject(subject_original)
-    post = {}
-    subject = subject_original
-    # remove [Freecycle Bucuresti] heading
-    match = subject.match /^\[Freecycle [^\]]*\] (.*)/
-    if match
-      subject = match[1]
-    end
-    # have kind?
-    kinds = {
-      'admin'             => 'admin',
-      'offer'             => ['ofer', 'dau'],
-      'offer_completed'   => 'dat',
-      'request'           => 'caut',
-      'request_completed' =>'luat'
-    }
-
-    expr = /\[?(#{kinds.values.flatten.join('|')})\]?(\:|\s)/i
-    match = subject.match expr
-    if (match)
-      value = match[1].downcase
-      post[:kind] = kinds.select{|k,v| v.include?(value)}.first[0]
-      subject[expr] = ''
-    end
-    post[:subject] = subject.strip
-    post[:subject_original] = subject_original
-    return post
-  end
-
   def self.obfuscate_author(author)
     MD5.new(author).to_s
   end
@@ -89,20 +62,6 @@ class Post < ActiveRecord::Base
   def self.are_pair?(first, second)
     return false if Post.kind_pair(first.kind) != second.kind
     subject_matches?(first, second)
-  end
-
-  def self.subject_matches?(first, second)
-    s1 = first.subject.downcase
-    s2 = second.subject.downcase
-
-    # equal
-    return true if s1 == s2
-
-    distance = Text::Levenshtein.distance(s1, s2)
-    lengths = [s1.length, s2.length]
-    sure_distance = lengths.max - lengths.min
-
-    return distance - sure_distance < lengths.min / 5
   end
 
   def self.unmatched_confirmations
