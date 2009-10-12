@@ -3,3 +3,5 @@ doc
 coverage
 .svn/
 pkg
+*.swp
+tags
