@@ -8,7 +8,7 @@ class PostTest < ActiveSupport::TestCase
   should_have_db_column :subject
   should_have_db_column :subject_original
 
-  should_allow_values_for :kind, ['offer', 'offer_completed', 'request', 'request_completed', 'ignore']
+  should_allow_values_for :kind, 'offer', 'offer_completed', 'request', 'request_completed', 'admin'
   should_not_allow_values_for :kind, 'other', :message => "is invalid"
   
   should_belong_to :group
