@@ -1,0 +1,160 @@
+# Lessons learned from updating this kick script:
+# * Probably easier to let the user mutate the files array instead of having to return an array.
+# * Might be best to create an array of Pathname's instead of simply file path strings.
+#   Probably a subclass of Pathname with some Kicker specific helpers. (Path.relative)
+# * Also maybe add an options/attributes hash to the Pathname subclass onto whch the user
+#   can add arbitrary attributes for if they spread handing over multiple callbacks.
+#   But this will make callbacks dependent on each-other...
+
+module Path
+  def self.relative(path)
+    path[(Dir.pwd.length + 1)..-1]
+  end
+  
+  def self.all_tests
+    all_functional_tests
+  end
+  
+  def self.all_functional_tests
+    Dir[File.expand_path("test/functional/**/*_test.rb")]
+  end
+end
+
+# Regular Rails mappings
+Kicker.process_callback = lambda do |kicker, files|
+  test_files = []
+  
+  files.dup.each do |file|
+    case file
+    when /config\/routes.rb$/
+      files.delete(file)
+      files.concat Path.all_functional_tests
+    end
+  end
+  
+  files.delete_if do |file|
+    # Match any ruby test file and run it
+    if Path.relative(file) =~ /^test\/.+_test\.rb$/
+      test_files << Path.relative(file)
+    
+    # Match any file in app/ and map it to a test file
+    elsif match = Path.relative(file).match(%r{^app/(\w+)([\w/]*)/([\w\.]+)\.\w+$})
+      type, namespace, file = match[1..3]
+      
+      dir = case type
+      when "models"
+        "unit"
+      when "concerns"
+        "unit/concerns"
+      when "controllers", "views"
+        "functional"
+      when "helpers"
+        "unit/helpers"
+      end
+      
+      if dir
+        if type == "views"
+          namespace = namespace.split('/')[1..-1]
+          file = "#{namespace.pop}_controller"
+        end
+        
+        test_file = File.join("test", dir, namespace, "#{file}_test.rb")
+        if File.exist?(test_file)
+          test_files << test_file
+        end
+      end
+    
+    # Match files in data/ to functional tests
+    elsif match = Path.relative(file).match(%r{^data/(.*)$})
+      case match[1]
+      when /venue_review.yml$/
+        test_files << File.join("test", "functional", "manage", "venue_reviews_controller_test.rb")
+      end
+    end
+  end
+  
+  kicker.execute_command "ruby -r #{test_files.join(' -r ')} -e ''" unless test_files.empty?
+end
+
+# TODO should add to the regular Rails mappings
+Kicker.process_callback = lambda do |kicker, files|
+  test_files = []
+  
+  files.delete_if do |file|
+    path = Path.relative(file)
+    if path =~ %r{^lib/(\w+)\.rb$}
+      test_files << File.join("test", "lib", "#{$1}_test.rb")
+    end
+  end
+  
+  kicker.execute_command "ruby -r #{test_files.join(' -r ')} -e ''" unless test_files.empty?
+end
+
+# App specific mappings
+Kicker.process_callback = lambda do |kicker, files|
+  test_files = []
+  
+  files.delete_if do |file|
+    path = Path.relative(file)
+    if path =~ %r{^app/views/mailer/\w+\.erb$}
+      test_files << 'test/unit/mailer_test.rb'
+    end
+  end
+  
+  kicker.execute_command "ruby -r #{test_files.join(' -r ')} -e ''" unless test_files.empty?
+end
+
+# Match javascript changes and run with HeadlessSquirrel
+Kicker.process_callback = lambda do |kicker, files|
+  test_files = []
+  
+  files.delete_if do |file|
+    case Path.relative(file)
+    when %r{^test/javascripts/(\w+)_test\.(js|html)$}
+    when %r{^public/javascripts/(\w+)\.js$}
+    else
+      next
+    end
+    test_files << "test/javascripts/#{$1}_test.html"
+  end
+  
+  kicker.execute_command "jstest #{test_files.join(' ')}" unless test_files.empty?
+end
+
+# Update stories
+Kicker.process_callback = lambda do |kicker, files|
+  if requirements = files.find { |f| f =~ %r{design/requirements\.txt$} }
+    files.delete(requirements)
+    kicker.execute_command "rake stories:convert"
+  end
+end
+
+# Exclude files
+class Kicker
+  module Recipes
+    module Exclude
+      class << self
+        def exclusions
+          @exclusions ||= []
+        end
+        
+        def exclude(regexp_or_string)
+          exclusions << Regexp.new(regexp_or_string)
+        end
+        
+        def call(_, files)
+          files.reject! { |f| exclusions.any? { |exclusion| f =~ exclusion } }
+        end
+      end
+      
+      Kicker.pre_process_chain.prepend_callback(self)
+    end
+  end
+end
+
+Kicker::Recipes::Exclude.exclude(/\w+\.log/)
+Kicker::Recipes::Exclude.exclude(/\.(svn|git)/)
+Kicker::Recipes::Exclude.exclude(/svn-commit\.tmp/)
+Kicker::Recipes::Exclude.exclude(/(jpg|png|gif|css)$/)
+
+Kicker::Recipes::Exclude.exclude(File.expand_path('../tmp', __FILE__))
