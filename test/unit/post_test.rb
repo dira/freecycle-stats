@@ -16,12 +16,20 @@ class PostTest < ActiveSupport::TestCase
   
 context 'setup from scraping:' do
   [
+    #standard
     {:subject_original => "[Freecycle Bucuresti] OFER: frigider vechi", :kind => 'offer', :subject => "frigider vechi"},
     {:subject_original => "[Freecycle Bucuresti] CAUT: blender", :kind => 'request', :subject => "blender"},
     {:subject_original => "[Freecycle Bucuresti] DAT: Stephen King", :kind => "offer_completed", :subject => "Stephen King"},
     {:subject_original => "[Freecycle Bucuresti] LUAT: carcasa miniATX", :kind => "request_completed", :subject => "carcasa miniATX"},
+    #without the group part
     {:subject_original => "CAUT: Cablu acceleratie Dacia Break 1410 din 1997", :kind => 'request', :subject => "Cablu acceleratie Dacia Break 1410 din 1997"},
     {:subject_original => "[OFER] monitor de 20\" HP M900 functional", :kind => "offer", :subject => "monitor de 20\" HP M900 functional"},
+    #with different verb for offers, different case and punctuation
+    {:subject_original => "DAU: monitor", :kind => "offer", :subject => "monitor"},
+    {:subject_original => "DAU monitor", :kind => "offer", :subject => "monitor"},
+    {:subject_original => "Dau monitor", :kind => "offer", :subject => "monitor"},
+    {:subject_original => "dau monitor", :kind => "offer", :subject => "monitor"},
+
     {:subject_original => "carti", :kind => nil, :subject => "carti"},
   ].each do |test|
     context "parse \"#{test[:subject_original]}\"" do

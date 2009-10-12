@@ -62,18 +62,19 @@ class Post < ActiveRecord::Base
       subject = match[1]
     end
     # have kind?
-    kinds =
-      {
-        'ofer' => 'offer',
-        'dat'  => 'offer_completed',
-        'caut' => 'request',
-        'luat' => 'request_completed'
-      }
+    kinds = {
+      'admin'             => 'admin',
+      'offer'             => ['ofer', 'dau'],
+      'offer_completed'   => 'dat',
+      'request'           => 'caut',
+      'request_completed' =>'luat'
+    }
 
-    expr = /\[?(caut|ofer|dat|luat)\]?\:?/i
+    expr = /\[?(#{kinds.values.flatten.join('|')})\]?(\:|\s)/i
     match = subject.match expr
     if (match)
-      post[:kind] = kinds[match[1].downcase]
+      value = match[1].downcase
+      post[:kind] = kinds.select{|k,v| v.include?(value)}.first[0]
       subject[expr] = ''
     end
     post[:subject] = subject.strip
