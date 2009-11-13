@@ -1,10 +1,9 @@
 desc 'call this task periodically'
-task :cron => ["messages:update", "messages:match"] do
-  require File.dirname(__FILE__) + '/../../app/scripts/update'
+task :cron => ["messages:fetch", "messages:match"] do
 end
 
 namespace :messages do
-  desc 'fetch email & parse them'
+  desc 'fetch emails & parse them'
   task :fetch => :environment do
     require File.dirname(__FILE__) + '/../../app/scripts/get_posts'
   end
