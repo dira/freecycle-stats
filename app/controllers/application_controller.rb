@@ -20,4 +20,9 @@ private
     I18n.locale = locale
     I18n.load_path += Dir[ File.join(RAILS_ROOT, 'lib', 'locale', '*.{rb,yml}') ]
   end
+
+  helper_method :group_url
+  def group_url
+    "http://groups.yahoo.com/group/freecycle_bucuresti/"
+  end
 end

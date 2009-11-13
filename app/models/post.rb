@@ -14,8 +14,8 @@ class Post < ActiveRecord::Base
   KINDS = KIND_OTHERS + KIND_MESSAGES
   enum_field "kind", KINDS, :allow_nil => true
 
-  named_scope :last_offers,   :conditions => { :kind => "offer" },   :limit => 25, :order => "sent_date DESC"
-  named_scope :last_requests, :conditions => { :kind => "request" }, :limit => 25, :order => "sent_date DESC"
+  named_scope :last_offers,   :conditions => [ "kind = 'offer' AND sent_date > ?", 30.days.ago],   :order => "sent_date DESC"
+  named_scope :last_requests, :conditions => [ "kind = 'request' AND sent_date > ?", 30.days.ago], :order => "sent_date DESC"
 
   named_scope :without_pair, :conditions => { :pair_id => nil }
   named_scope :without_kind, :conditions => { :kind => nil }
@@ -68,6 +68,15 @@ class Post < ActiveRecord::Base
     )
     results.delete(post) if post
     results
+  end
+
+  def self.initiator(kind)
+    KIND_PAIRS.keys.include? kind
+  end
+
+  def self.search(term, kind)
+    return [] unless initiator(kind)
+    Post.without_pair.all(:conditions => ["subject LIKE ? AND kind=?", "%#{term}%", kind], :order => "sent_date desc")
   end
 
   def self.candidates_same_author(post)

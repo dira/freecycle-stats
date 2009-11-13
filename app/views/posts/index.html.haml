@@ -1,9 +1,8 @@
 - content_for :head do
-  = stylesheet_link_tag "posts/index"
-  = javascript_include_tag "posts/index"
+  = stylesheet_link_tag "posts"
+  = javascript_include_tag "posts"
     
 %h2 Freecyle Bucuresti
-- url = "http://groups.yahoo.com/group/freecycle_bucuresti/"
 %blockquote
   = freecycle_link(:image)
   %p
@@ -15,14 +14,18 @@
 
 %h3 Ce se da &amp; ce se cere - ACUM
 %p
-  Mai jos gasiti ultimele 25 oferte si cereri, fara obiectele care s-au dat/luat deja.
+  Mai jos gasiti ofertele si cererile din ultima luna, fara obiectele care s-au dat/luat deja.
   Pentru a oferi/cere obiecte efectiv trebuie sa va inscrieti pe
-  == #{link_to 'pagina grupului', url, :class => 'minor'}.
+  == #{link_to 'pagina grupului', group_url, :class => 'minor'}.
 
 #dashboard
   #offers
     %h3 Ce se da
-    = link_to 'n-am.. si vreau!', url, :target => "_blank", :class => "action", :style => "display:none"
+    - form_tag search_posts_path do
+      = text_field_tag 'query'
+      = hidden_field_tag 'kind', "offer"
+      = submit_tag 'Cauta'
+    = link_to 'n-am.. si vreau!', group_url, :target => "_blank", :class => "action", :style => "display:none"
     %table
       %thead
         %tr
@@ -33,7 +36,7 @@
         = render @offers
   #requests
     %h3 Ce se cere
-    = link_to 'am.. si dau!', url, :target => "_blank", :class => "action", :style => "display:none"
+    = link_to 'am.. si dau!', group_url, :target => "_blank", :class => "action", :style => "display:none"
     %table
       %thead
         %tr

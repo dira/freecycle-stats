@@ -3,7 +3,7 @@ Event.observe(window, 'load', function() { init() });
 function init() {
   var dashboard = $('dashboard');
 
-  dashboard.select('#offers, #requests').each(function(tab){
+  dashboard.select('#offers,#requests').each(function(tab){
     // don't want to be considered spammers - so add the hundred links dynamically
     var action = tab.down('.action');
     tab.select('td .meta').each(function(meta){
