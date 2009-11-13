@@ -29,7 +29,9 @@ context 'matching should be weighted' do
 
   [
     ['ghete noi', 'papuci'],
-    ['ghete fara sireturi noi', 'papuci fara talpa']
+    ['ghete fara sireturi noi', 'papuci fara talpa'],
+    ["Canapea 2 locuri Vatra Luminoasa", "suport haine Vatra Luminoasa"],
+    ["carti / Titan", "tacamuri, Titan"]
   ].each do |s1, s2|
     should "not recognize #{s1} and #{s2}" do
       assert_equal 0, Post.similarity(s1, s2)
@@ -37,6 +39,9 @@ context 'matching should be weighted' do
   end
 
   [
+    ["mouse-ul in forma de masinuta si castile roz philips",
+     "mouse-ul in forma de masinuta"],
+
     ["sterilizator si huda izoterma biberoane",
      "sterilizator biberoane pt cuptorul cu microunde si o husa termica"],
 

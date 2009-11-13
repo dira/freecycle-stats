@@ -1,4 +1,4 @@
-module Matcher
+module SubjectMatcher
   def Post.parse_subject(subject_original)
     post = {}
     subject = subject_original
@@ -26,6 +26,13 @@ module Matcher
     post[:subject] = subject.strip
     post[:subject_original] = subject_original
     return post
+  end
+
+  def Post.matches?(first, second)
+    return false unless Post.pair_kind(first.kind) == second.kind
+    first, second = second, first if Post::KIND_PAIRS.keys.include?(second.kind)
+    return false unless first.sent_date <= second.sent_date
+    Post.similarity(first.subject, second.subject) > 0
   end
 
   def Post.similarity(first, second)

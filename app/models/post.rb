@@ -2,18 +2,17 @@ require 'md5'
 require 'text'
 
 class Post < ActiveRecord::Base
-  include Matcher
+  include SubjectMatcher
 
   belongs_to :group
   has_one :pair, :class_name => 'Post'
 
-  KIND_PAIRS = [ 
-    ["offer", "offer_completed"],
-    ["request", "request_completed"]
-  ]
+  KIND_PAIRS = { "offer" => "offer_completed", "request" => "request_completed" }
+
+  KIND_MESSAGES = KIND_PAIRS.keys + KIND_PAIRS.values
   KIND_OTHERS = ["admin"]
 
-  KINDS = KIND_OTHERS + KIND_PAIRS.flatten
+  KINDS = KIND_OTHERS + KIND_MESSAGES
   enum_field "kind", KINDS, :allow_nil => true
 
   named_scope :last_offers,   :conditions => { :kind => "offer" },   :limit => 25, :order => "sent_date DESC"
@@ -24,7 +23,7 @@ class Post < ActiveRecord::Base
 
   named_scope :sent_before, lambda{ |post| { :conditions => ["sent_date <= ?", post.sent_date] } }
 
-  def set_pair(message)
+  def pair=(message)
     self.pair_id = message.id
   end
 
@@ -46,22 +45,12 @@ class Post < ActiveRecord::Base
     end
   end
 
-  def self.kind_pair(kind)
-    KIND_PAIRS.each do |p|
-      if p.include?(kind)
-        return p.select{ |k| k != kind }[0]
-      end
-    end
-    return nil
+  def self.pair_kind(kind)
+    KIND_PAIRS[kind] || KIND_PAIRS.invert[kind]
   end
 
   def self.obfuscate_author(author)
     MD5.new(author).to_s
-  end
-
-  def self.are_pair?(first, second)
-    return false if Post.kind_pair(first.kind) != second.kind
-    subject_matches?(first, second)
   end
 
   def self.unmatched_confirmations
@@ -93,7 +82,6 @@ class Post < ActiveRecord::Base
     Post.without_pair.sent_before(post).all(
       :conditions => ["sent_date<=? AND sent_date>=?", post.sent_date, post.sent_date - 30.days],
       :order => "sent_date DESC"
-    ).select{|candidate| subject_matches?(post, candidate)}.select{|p| p != post}
+    ).select{|candidate| Post.matches?(post, candidate)}.select{|p| p != post}
   end
-
 end

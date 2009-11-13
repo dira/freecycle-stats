@@ -1,10 +1,7 @@
 require 'pp'
 
 class Matcher
-  Group.all.each do |group|
-    pp "Parsing: #{group.name}"
-    posts = group.posts.all(:conditions => {:pair_id => nil, :kind => Post::KIND_PAIRS.flatten})
-    pp "#{posts.size} unmatched posts"
+  def self.parse_by_author(posts)
     # group by author_md5
     by_author = {}
     posts.each do |p| 
@@ -12,34 +9,44 @@ class Matcher
       by_author[p.author_md5] << p
     end
 
-    nr_matches = 0
-    # which authors have more than one message?
-    by_author.keys.select{|a| by_author[a].size > 1}.each do |author|
-      messages = by_author[author]
-      # search for pairs with the same subject - and remove them
-      while true do
-        match_found = false
-        messages.each do |first|
-          break if match_found
+    # which authors have more than one completion message
+    authors = by_author.keys.select{|a| by_author[a].select{|p| Post::KIND_PAIRS.values.include?(p.kind)}.size > 0}
+    authors.each{|author| parse_author(by_author[author])}
+  end
 
-          messages.each do |second|
-            break if match_found
-
-            if Post.are_pair?(first, second)
-              match_found = true
-              nr_matches += 1
-
-              first.set_pair(second)
-
-              messages.delete(first)
-              messages.delete(second)
+  def self.parse_author(messages)
+    # search for pairs with the same subject - and remove them
+    while true do
+      highest_score = 0
+      best = nil
+      by_kind = messages.partition{|p| Post::KIND_PAIRS.keys.include?(p.kind)}
+      by_kind[0].each do |first|
+        by_kind[1].each do |second|
+          if Post.matches?(first, second)
+            score = Post.similarity(first.subject, second.subject)
+            if score > highest_score
+              highest_score = score
+              best = [first, second]
             end
           end
         end
-        break if !match_found
+      end
+      if highest_score > 0
+        best[0].pair = best[1]
+        messages.delete(best[0])
+        messages.delete(best[1])
+      else
+        break
       end
     end
-    pp "#{nr_matches} matches"
   end
+
+  Group.all.each do |group|
+    pp "Parsing: #{group.name}"
+    posts = group.posts.without_pair(:conditions => {:kind => Post::KIND_MESSAGES})
+    #pp "#{posts.size} unmatched posts"
+    parse_by_author(posts)
+  end
+
 end
 

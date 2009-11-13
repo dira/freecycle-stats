@@ -69,7 +69,7 @@ context 'kinds' do
     ['asd', nil]
   ].each do | kind, answer |
     should "get right pair for: #{kind}" do
-      assert_equal answer, Post.kind_pair(kind)
+      assert_equal answer, Post.pair_kind(kind)
     end
   end
 end
