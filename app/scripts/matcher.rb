@@ -1,5 +1,3 @@
-require 'pp'
-
 class Matcher
   def self.parse_by_author(posts)
     # group by author_md5
@@ -41,12 +39,7 @@ class Matcher
     end
   end
 
-  Group.all.each do |group|
-    pp "Parsing: #{group.name}"
-    posts = group.posts.without_pair(:conditions => {:kind => Post::KIND_MESSAGES})
-    #pp "#{posts.size} unmatched posts"
-    parse_by_author(posts)
-  end
-
+  posts = Post.without_pair(:conditions => {:kind => Post::KIND_MESSAGES})
+  parse_by_author(posts)
 end
 

@@ -11,7 +11,6 @@ class PostTest < ActiveSupport::TestCase
   should_allow_values_for :kind, 'offer', 'offer_completed', 'request', 'request_completed', 'admin'
   should_not_allow_values_for :kind, 'other', :message => "is invalid"
   
-  should_belong_to :group
   # should_have_one :pair # TODO not working
   
 context 'setup from scraping:' do

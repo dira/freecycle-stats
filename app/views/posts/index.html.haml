@@ -2,9 +2,8 @@
   = stylesheet_link_tag "posts/index"
   = javascript_include_tag "posts/index"
     
-%h2
-  Freecyle
-  =h @group.name
+%h2 Freecyle Bucuresti
+- url = "http://groups.yahoo.com/group/freecycle_bucuresti/"
 %blockquote
   = freecycle_link(:image)
   %p
@@ -21,12 +20,12 @@
 %p
   Continutul tabelului se actualizeaza o data la cateva ore si contine doar titlul postului si data la care a fost facut.<br/>
   Pentru a oferi/cere obiecte efectiv trebuie sa va inscrieti pe
-  == #{link_to 'pagina grupului', @group.web, :class => 'minor'}.
+  == #{link_to 'pagina grupului', url, :class => 'minor'}.
 
 #dashboard
   #offers
     %h3 Ce se da
-    = link_to 'n-am.. si vreau!', @group.web, :target => "_blank", :class => "action", :style => "display:none"
+    = link_to 'n-am.. si vreau!', url, :target => "_blank", :class => "action", :style => "display:none"
     %table
       %thead
         %tr
@@ -37,7 +36,7 @@
         = render @offers
   #requests
     %h3 Ce se cere
-    = link_to 'am.. si dau!', @group.web, :target => "_blank", :class => "action", :style => "display:none"
+    = link_to 'am.. si dau!', url, :target => "_blank", :class => "action", :style => "display:none"
     %table
       %thead
         %tr

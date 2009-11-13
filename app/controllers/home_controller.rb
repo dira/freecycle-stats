@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    redirect_to groups_path
+    redirect_to posts_path
   end
 end

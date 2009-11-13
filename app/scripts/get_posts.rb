@@ -1,5 +1,4 @@
 require 'net/imap'
-require 'pp'
 
 class MailHeaderFetcher
   LABEL_NEW = "#{RAILS_ENV}/new"
@@ -14,7 +13,7 @@ class MailHeaderFetcher
     @imap.select(LABEL_NEW)
 
     unfetched = @imap.uid_search("ALL")
-    pp "#{unfetched.size} new messages"
+    p "#{unfetched.size} new messages"
 
     unfetched.each_slice(50) do |uids|
       to_move = []
@@ -47,26 +46,22 @@ class GetPosts
   server = MAIL_CONFIG['mail_server']['server']
   port = MAIL_CONFIG['mail_server']['port']
 
-  Group.all.each do |group|
-    pp "##{group.name}"
 
-    username = MAIL_CONFIG[group.name]['username']
-    password = MAIL_CONFIG[group.name]['password']
-    
-    MailHeaderFetcher.new(server, port, username, password).retrieve_messages do |mail|
-      begin
-        hash = Post.parse_subject(mail.subject)
-        hash[:group_id] = group.id
-        hash[:message_id] = mail.message_id
-        from = "#{mail.from[0].mailbox || mail.from[0].name}@#{mail.from[0].host}"
-        hash[:author_md5] = Post.obfuscate_author(from)
-        hash[:sent_date] = mail.date
-        Post.find_or_create_by_message_id(hash)
-        true
-      rescue Error => err
-        pp 'err', err,mail
-        false
-      end
+  username = MAIL_CONFIG['mail_server']['username']
+  password = MAIL_CONFIG['mail_server']['password']
+  
+  MailHeaderFetcher.new(server, port, username, password).retrieve_messages do |mail|
+    begin
+      hash = Post.parse_subject(mail.subject)
+      hash[:message_id] = mail.message_id
+      from = "#{mail.from[0].mailbox || mail.from[0].name}@#{mail.from[0].host}"
+      hash[:author_md5] = Post.obfuscate_author(from)
+      hash[:sent_date] = mail.date
+      Post.find_or_create_by_message_id(hash)
+      true
+    rescue Error => err
+      p 'err', err,mail
+      false
     end
   end
 end
