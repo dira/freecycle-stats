@@ -19,29 +19,5 @@
   == #{link_to 'pagina grupului', group_url, :class => 'minor'}.
 
 #dashboard
-  #offers
-    %h3 Ce se da
-    - form_tag search_posts_path do
-      = text_field_tag 'query'
-      = hidden_field_tag 'kind', "offer"
-      = submit_tag 'Cauta'
-    = link_to 'n-am.. si vreau!', group_url, :target => "_blank", :class => "action", :style => "display:none"
-    %table
-      %thead
-        %tr
-          %td
-            obiect oferit
-            .continue (continuare)
-      %tbody
-        = render @offers
-  #requests
-    %h3 Ce se cere
-    = link_to 'am.. si dau!', group_url, :target => "_blank", :class => "action", :style => "display:none"
-    %table
-      %thead
-        %tr
-          %td
-            obiect cautat
-            .continue (continuare)
-      %tbody
-        = render @requests
+  = render :partial => "offers",   :locals => { :offers   => @offers }
+  = render :partial => "requests", :locals => { :requests => @requests }
