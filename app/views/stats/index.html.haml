@@ -1,0 +1,9 @@
+%h2 Activitatea din ultimele 6 luni
+- require 'google_chart'
+- colors = { :request => "FF0000", :request_completed => "E77471", :offer => "347C17", :offer_completed => "4CC552" }
+- GoogleChart::BarChart.new('800x200', "Ultimele 6 luni", :vertical, false) do |chart|
+  - colors.each{ |kind, color| chart.data kind, @stats[:data][kind.to_s], color }
+  - chart.axis :x, :labels => @stats[:labels].map{|date| date.strftime("%B '%y")}
+  
+  -#- chart.labels @stats[:labels]
+  = image_tag chart.to_url

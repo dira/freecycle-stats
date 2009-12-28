@@ -1,6 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   map.root :controller => "home"
   map.resources :posts, :collection => { :search => :post }
+  map.resources :stats
 
   map.namespace(:admin) do |admin|
     admin.root :controller => 'posts'
