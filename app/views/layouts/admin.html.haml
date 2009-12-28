@@ -9,8 +9,12 @@
 
   %body
     #container
-      %h1 
-        = link_to "Ce se da &amp; ce se cere", '/'
+      #header
+        %h1
+          = link_to "Admin: Freecycle stats", '/'
+        %ul#menu
+          %li
+            =link_to 'Posts to fix', admin_posts_path
       #main
         = yield
 

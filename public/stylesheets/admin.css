@@ -10,3 +10,31 @@
   #without_kind .kinds form {
     float: left;
     margin-right: 20px; }
+
+#header {
+  zoom: 1;
+  margin-bottom: 20px;
+  padding: 2px;
+  background-color: #2DA66D; }
+  #header:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  #header * {
+    line-height: 1.5em; }
+
+h1 {
+  text-align: left;
+  margin: 0;
+  font-size: 1em;
+  float: right; }
+
+#menu {
+  float: left; }
+  #menu li {
+    display: inline;
+    margin-left: 20px; }
+    #menu li a {
+      color: white; }
