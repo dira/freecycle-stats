@@ -1,7 +1,7 @@
 class Stat < ActiveRecord::Base
   def self.messages_per_month(nr_months)
-    start_date = (nr_months - 1).months.ago.beginning_of_month
-    end_date = 0.days.ago.end_of_month
+    start_date = (nr_months - 1).months.ago.beginning_of_month.to_date
+    end_date = 0.days.ago.end_of_month.to_date
 
     data = {}
     labels = []

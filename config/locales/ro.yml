@@ -37,3 +37,15 @@ ro-RO:
       over_x_years:
          one: 'mai mult de un an'
          other: 'mai mult de {{count}} ani'
+  date:
+    month_names: [~, Ianuarie, Februarie, Martie, Aprilie, Mai, Iunie, Iulie, August, Septembrie, Octombrie, Noiembrie, Decembrie]
+    abbr_month_names: [~, Ian, Feb, Mar, Apr, Mai, Iun, Iul, Aug, Sep, Oct, Noi, Dec]
+    abbr_day_names: [Lu, Ma, Mi, Jo, Vi, Sa, Du]
+    day_names: [Luni, Marti, Miercuri, Joi, Vineri, Sambata, Duminica]
+    formats:
+      short: "%B '%y"
+
+  request: cerere
+  request_completed: cerere indeplinita
+  offer: oferta
+  offer_completed: oferta acceptata
