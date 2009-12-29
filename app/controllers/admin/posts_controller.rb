@@ -1,6 +1,4 @@
-class Admin::PostsController < ApplicationController
-  layout "admin"
-  before_filter :logged_or_from_localhost
+class Admin::PostsController < Admin::AdminController
   before_filter :get_post, :only => [ :show, :update, :search ]
 
   def index
@@ -29,9 +27,5 @@ class Admin::PostsController < ApplicationController
 private
   def get_post
     @post = Post.find(params[:id])
-  end
-
-  def logged_or_from_localhost
-    login_required unless local_request?
   end
 end

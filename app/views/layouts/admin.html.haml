@@ -14,7 +14,9 @@
           = link_to "Admin: Freecycle stats", '/'
         %ul#menu
           %li
-            =link_to 'Posts to fix', admin_posts_path
+            = link_to 'Posts to fix', admin_posts_path
+          %li
+            = link_to 'Make some tags', admin_tag_candidates_path
       #main
         = yield
 
