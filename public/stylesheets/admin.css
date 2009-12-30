@@ -1,16 +1,3 @@
-#without_kind .kinds {
-  zoom: 1;
-  margin: 10px 0 20px; }
-  #without_kind .kinds:after {
-    content: ".";
-    display: block;
-    height: 0;
-    clear: both;
-    visibility: hidden; }
-  #without_kind .kinds form {
-    float: left;
-    margin-right: 20px; }
-
 #header {
   zoom: 1;
   margin-bottom: 20px;
@@ -38,6 +25,22 @@ h1 {
     margin-left: 20px; }
     #menu li a {
       color: white; }
+
+#without_kind .kinds {
+  zoom: 1;
+  margin: 10px 0 20px; }
+  #without_kind .kinds:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  #without_kind .kinds form {
+    float: left;
+    margin-right: 20px; }
+
+.first_old {
+  margin-top: 60px; }
 
 #tags form {
   padding: 10px; }
