@@ -16,7 +16,9 @@
           %li
             = link_to 'Posts to fix', admin_posts_path
           %li
-            = link_to 'Make some tags', admin_tag_candidates_path
+            = link_to 'Make some tags', filter_words_admin_tag_candidates_path
+          %li
+            = link_to 'Set categories', admin_tag_candidates_path
       #main
         = yield
 

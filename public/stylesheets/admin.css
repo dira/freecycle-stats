@@ -42,10 +42,24 @@ h1 {
 .first_old {
   margin-top: 60px; }
 
+#tags div:hover {
+  background-color: lightblue; }
 #tags form {
-  padding: 10px; }
+  padding: 10px;
+  margin-bottom: 20px; }
   #tags form:hover {
     background-color: pink; }
 
 #disable_all {
   margin-bottom: 400px; }
+
+.categories {
+  zoom: 1; }
+  .categories:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  .categories form {
+    float: left; }

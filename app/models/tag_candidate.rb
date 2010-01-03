@@ -1,6 +1,14 @@
 class TagCandidate < ActiveRecord::Base
+  belongs_to :category
+
   STATUSES = ["yes", "no"]
   enum_field "status", STATUSES, :allow_nil => true
+
+  validates_presence_of :word
+
+  named_scope :tags, { :conditions => { :status => "yes" } }
+  named_scope :uncategorized, { :conditions => { :category_id => nil } }
+  named_scope :limited, lambda { |number| { :limit => number } }
 
   def self.candidates
     candidates = Post.all(:select => :subject).map{|p| p.subject}.join(' ').downcase.split(/\W/).uniq.sort

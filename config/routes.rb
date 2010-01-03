@@ -6,7 +6,7 @@ ActionController::Routing::Routes.draw do |map|
   map.namespace(:admin) do |admin|
     admin.root :controller => 'posts'
     admin.resources :posts, :collection => { :search => :post }
-    admin.resources :tag_candidates, :collection => { :disable_all => :post }
+    admin.resources :tag_candidates, :collection => { :disable_all => :post, :filter_words => :get }
   end
   map.open_id_complete 'session', :controller => 'sessions', :action => 'create', :requirements => { :method => :get }
   map.resource  :session
