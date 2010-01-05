@@ -2,4 +2,22 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  date:
+    formats:
+      short: "%B '%y"
+
+  kinds:
+    request: request
+    request_completed: fulfiled request
+    offer: offer
+    offer_completed: accepted offer
+  stats:
+    loading: Loading...
+    global last x months: Last {{months}} months
+    by category: By category
+    most active categories: Most active categories
+    last x months: Last {{months}} months
+  global:
+    title: Freecycle Bucharest - stats
+    concept: concept
+    implementation: implementation

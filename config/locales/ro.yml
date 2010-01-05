@@ -45,7 +45,18 @@ ro-RO:
     formats:
       short: "%B '%y"
 
-  request: cerere
-  request_completed: cerere indeplinita
-  offer: oferta
-  offer_completed: oferta acceptata
+  kinds:
+    request: cerere
+    request_completed: cerere indeplinita
+    offer: oferta
+    offer_completed: oferta acceptata
+  stats:
+    global last x months: Activitatea din ultimele {{months}} luni
+    by category: Mesajele, pe categorii
+    most active categories: Cele mai active categorii
+    last x months: Ultimele {{months}} luni
+    loading: Incarcam graficul..
+  global:
+    title: Freecycle Bucuresti - statistici
+    concept: concept
+    implementation: implementare
