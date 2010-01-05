@@ -1,5 +1,6 @@
-%h2 Activitatea din ultimele 6 luni
 - require 'google_chart'
+
+%h2 Activitatea din ultimele 6 luni
 - colors = [ [:request, "FF0000"], [:request_completed, "E77471"], [:offer, "347C17"], [:offer_completed, "4CC552"] ]
 - global_wh = [700, 300]
 - GoogleChart::BarChart.new("#{global_wh[0]}x#{global_wh[1]}", "Ultimele 6 luni", :vertical, false) do |chart|
@@ -11,3 +12,14 @@
 
   = image_tag chart.to_url(:chdlp => "t"), {:alt => " Incarcam graficul..", :width => global_wh[0], :height => global_wh[1] }
 
+%h2 Mesajele, pe categorii
+- per_kind_wh = [500, 500]
+- GoogleChart::BarChart.new("#{per_kind_wh[0]}x#{per_kind_wh[1]}", "Categorii", :horizontal, false) do |chart|
+  - chart.data '', @global_per_kind[:data]
+  - chart.show_legend = false
+
+  - chart.axis   :x, :range => (0..@global_per_kind[:data][0])
+  - chart.axis :top, :range => (0..@global_per_kind[:data][0])
+  - chart.axis   :y, :labels => @global_per_kind[:labels].reverse
+
+  = image_tag chart.to_url, { :alt => " Incarcam graficul..", :width => per_kind_wh[0], :height => per_kind_wh[1] }
