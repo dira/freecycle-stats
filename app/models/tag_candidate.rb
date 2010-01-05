@@ -5,13 +5,14 @@ class TagCandidate < ActiveRecord::Base
   enum_field "status", STATUSES, :allow_nil => true
 
   validates_presence_of :word
+  validates_uniqueness_of :word
 
   named_scope :tags, { :conditions => { :status => "yes" } }
   named_scope :uncategorized, { :conditions => { :category_id => nil } }
   named_scope :limited, lambda { |number| { :limit => number } }
 
   def self.candidates
-    candidates = Post.all(:select => :subject).map{|p| p.subject}.join(' ').downcase.split(/\W/).uniq.sort
+    candidates = Post::all_words_in_subjects(Post.messages(:select => :subject))
     checked = TagCandidate.all(:select => :word, :conditions => { :status => STATUSES }).map{|t| t.word }
     candidates = candidates - checked
     # get x results that are words in the dictionary

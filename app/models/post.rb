@@ -5,6 +5,7 @@ class Post < ActiveRecord::Base
   include SubjectMatcher
 
   has_one :pair, :class_name => 'Post'
+  belongs_to :category
 
   KIND_PAIRS = { "offer" => "offer_completed", "request" => "request_completed" }
 
@@ -21,6 +22,7 @@ class Post < ActiveRecord::Base
   named_scope :without_kind, :conditions => { :kind => nil }
 
   named_scope :sent_before, lambda{ |post| { :conditions => ["sent_date <= ?", post.sent_date] } }
+  named_scope :messages, :conditions => [ "kind IN (?)", KIND_MESSAGES]
 
   def pair=(message)
     self.pair_id = message.id
@@ -91,5 +93,23 @@ class Post < ActiveRecord::Base
       :conditions => ["sent_date<=? AND sent_date>=?", post.sent_date, post.sent_date - 30.days],
       :order => "sent_date DESC"
     ).select{|candidate| Post.matches?(post, candidate)}.select{|p| p != post}
+  end
+
+  def self.all_words_in_subjects(posts)
+    posts.map{|p| p.subject}.join(' ').downcase.split(/\W/).uniq.sort
+  end
+
+  def self.categorize_all
+    posts = Post.messages.all(:conditions => { :category_processed => false }, :select => "subject, id, category_processed")
+    Post::categorize(posts)
+  end
+
+  def self.categorize(posts)
+    posts.each do |post|
+      words = Post::all_words_in_subjects([post])
+      categories = TagCandidate.tags.all(:conditions => ["word in (?)", words])
+      post.update_attribute(:category_id, categories.first.category_id) if categories.size > 0 # take the first one
+      post.update_attribute(:category_processed, true) unless post.category_processed
+    end
   end
 end

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100102235945) do
+ActiveRecord::Schema.define(:version => 20100105155533) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -51,6 +51,8 @@ ActiveRecord::Schema.define(:version => 20100102235945) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "pair_id"
+    t.boolean  "category_processed", :default => false
+    t.integer  "category_id"
   end
 
   create_table "tag_candidates", :force => true do |t|
