@@ -16,7 +16,7 @@ class Stat < ActiveRecord::Base
                         start_date, start_date.end_of_month, Post::KIND_MESSAGES])
       counts = {}
       raw.each{ |m| counts[m[0]] = m[1] }
-      data.each{|kind, value| data[kind] << counts[kind] }
+      data.each{|kind, value| data[kind] << (counts[kind] || 0) }
       
       start_date = start_date.next_month
     end

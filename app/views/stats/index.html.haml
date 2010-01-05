@@ -1,8 +1,13 @@
 %h2 Activitatea din ultimele 6 luni
 - require 'google_chart'
-- colors = { :request => "FF0000", :request_completed => "E77471", :offer => "347C17", :offer_completed => "4CC552" }
-- GoogleChart::BarChart.new('800x200', "Ultimele 6 luni", :vertical, false) do |chart|
-  - colors.each{ |kind, color| chart.data((t kind), @stats[:data][kind.to_s], color) }
-  - chart.axis :x, :labels => @stats[:labels].map{|date| I18n.localize(date, :format => :short) }
-  
-  = image_tag chart.to_url
+- colors = [ [:request, "FF0000"], [:request_completed, "E77471"], [:offer, "347C17"], [:offer_completed, "4CC552"] ]
+- global_wh = [700, 300]
+- GoogleChart::BarChart.new("#{global_wh[0]}x#{global_wh[1]}", "Ultimele 6 luni", :vertical, false) do |chart|
+  - colors.each{ |kind, color| chart.data((t kind), @global[:data][kind.to_s], color) }
+  - chart.width_spacing_options(:bar_width => "a", :bar_spacing => "5", :group_spacing => 40)
+
+  - chart.axis :x, :labels => @global[:labels].map{|date| I18n.localize(date, :format => :short) }
+  - chart.axis :y, :range => (0..(@global[:data].values.flatten.max * 1.1).to_i)
+
+  = image_tag chart.to_url(:chdlp => "t"), {:alt => " Incarcam graficul..", :width => global_wh[0], :height => global_wh[1] }
+
