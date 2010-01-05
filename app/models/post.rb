@@ -4,7 +4,7 @@ require 'text'
 class Post < ActiveRecord::Base
   include SubjectMatcher
 
-  has_one :pair, :class_name => 'Post'
+  has_one :pair, :class_name => 'Post', :foreign_key => :id
   belongs_to :category
 
   KIND_PAIRS = { "offer" => "offer_completed", "request" => "request_completed" }
