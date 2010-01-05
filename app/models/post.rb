@@ -22,7 +22,10 @@ class Post < ActiveRecord::Base
   named_scope :without_kind, :conditions => { :kind => nil }
 
   named_scope :sent_before, lambda{ |post| { :conditions => ["sent_date <= ?", post.sent_date] } }
+
   named_scope :messages, :conditions => [ "kind IN (?)", KIND_MESSAGES]
+
+  named_scope :by_category_id, lambda{ |category_id| { :conditions => { :category_id => category_id} } }
 
   def pair=(message)
     self.pair_id = message.id

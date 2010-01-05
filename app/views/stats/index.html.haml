@@ -4,11 +4,11 @@
 - colors = [ [:request, "FF0000"], [:request_completed, "E77471"], [:offer, "347C17"], [:offer_completed, "4CC552"] ]
 - global_wh = [700, 300]
 - GoogleChart::BarChart.new("#{global_wh[0]}x#{global_wh[1]}", "Ultimele 6 luni", :vertical, false) do |chart|
-  - colors.each{ |kind, color| chart.data((t kind), @global[:data][kind.to_s], color) }
+  - colors.each{ |kind, color| chart.data((t kind), @global_per_month[:data][kind.to_s], color) }
   - chart.width_spacing_options(:bar_width => "a", :bar_spacing => "5", :group_spacing => 40)
 
-  - chart.axis :x, :labels => @global[:labels].map{|date| I18n.localize(date, :format => :short) }
-  - chart.axis :y, :range => (0..(@global[:data].values.flatten.max * 1.1).to_i)
+  - chart.axis :x, :labels => @global_per_month[:labels].map{|date| I18n.localize(date, :format => :short) }
+  - chart.axis :y, :range => (0..(@global_per_month[:data].values.flatten.max * 1.1).to_i)
 
   = image_tag chart.to_url(:chdlp => "t"), {:alt => " Incarcam graficul..", :width => global_wh[0], :height => global_wh[1] }
 
@@ -23,3 +23,17 @@
   - chart.axis   :y, :labels => @global_per_kind[:labels].reverse
 
   = image_tag chart.to_url, { :alt => " Incarcam graficul..", :width => per_kind_wh[0], :height => per_kind_wh[1] }
+
+%h2 Cele mai active categorii
+- category_wh = [700, 200]
+- range = (0..(@kinds_per_month.map{|category, stat| stat[:data].values}.flatten.max * 1.1).to_i)
+- @kinds_per_month.each do |category, category_per_month|
+  %h3= category.name
+  - GoogleChart::BarChart.new("#{category_wh[0]}x#{category_wh[1]}", "Ultimele 6 luni", :vertical, false) do |chart|
+    - colors.each{ |kind, color| chart.data((t kind), category_per_month[:data][kind.to_s], color) }
+    - chart.width_spacing_options(:bar_width => "a", :bar_spacing => "5", :group_spacing => 40)
+
+    - chart.axis :x, :labels => category_per_month[:labels].map{|date| I18n.localize(date, :format => :short) }
+    - chart.axis :y, :range => range
+
+    = image_tag chart.to_url(:chdlp => "t"), {:alt => " Incarcam graficul..", :width => category_wh[0], :height => category_wh[1] }
