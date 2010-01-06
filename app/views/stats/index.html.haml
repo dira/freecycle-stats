@@ -1,39 +1,13 @@
 - require 'google_chart'
 
-%h2= (t 'stats.global last x months', :months => @global_per_month[:labels].size)
-- colors = [ [:request, "FF0000"], [:request_completed, "E77471"], [:offer, "347C17"], [:offer_completed, "4CC552"] ]
-- global_wh = [700, 300]
-- GoogleChart::BarChart.new("#{global_wh[0]}x#{global_wh[1]}", '', :vertical, false) do |chart|
-  - colors.each{ |kind, color| chart.data((t "kinds.#{kind}"), @global_per_month[:data][kind.to_s], color) }
-  - chart.width_spacing_options(:bar_width => "a", :bar_spacing => "5", :group_spacing => 40)
+%h2= (t 'stats.global last x months', :months => @per_month[:labels].size)
+= render :partial => 'by_kind_each_month', :locals => { :data => @per_month, :range => chart_range(@per_month[:data].values), :wh => [700, 300] }
 
-  - chart.axis :x, :labels => @global_per_month[:labels].map{|date| I18n.localize(date, :format => :short) }
-  - chart.axis :y, :range => (0..(@global_per_month[:data].values.flatten.max * 1.1).to_i)
+%h3= t 'stats.by category'
+= render :partial => 'by_category', :locals => { :data => @per_kind, :wh => [500, 500]}
 
-  = image_tag chart.to_url(:chdlp => "t"), {:alt => (t 'stats.loading'), :width => global_wh[0], :height => global_wh[1] }
-
-%h2= t 'stats.by category'
-- per_kind_wh = [500, 500]
-- GoogleChart::BarChart.new("#{per_kind_wh[0]}x#{per_kind_wh[1]}", (t 'stats.by category'), :horizontal, false) do |chart|
-  - chart.data '', @global_per_kind[:data]
-  - chart.show_legend = false
-
-  - chart.axis   :x, :range => (0..@global_per_kind[:data][0])
-  - chart.axis :top, :range => (0..@global_per_kind[:data][0])
-  - chart.axis   :y, :labels => @global_per_kind[:labels].reverse
-
-  = image_tag chart.to_url, { :alt => (t 'stats.loading'), :width => per_kind_wh[0], :height => per_kind_wh[1] }
-
-%h2= (t 'stats.most active categories')
-- category_wh = [700, 200]
-- range = (0..(@kinds_per_month.map{|category, stat| stat[:data].values}.flatten.max * 1.1).to_i)
+%h3= (t 'stats.kinds by category')
+- values = @kinds_per_month.map{ |category, stat| stat[:data].values }
 - @kinds_per_month.each do |category, category_per_month|
-  %h3= category.name
-  - GoogleChart::BarChart.new("#{category_wh[0]}x#{category_wh[1]}", (t 'stats.last x months', :months => category_per_month[:labels].size), :vertical, false) do |chart|
-    - colors.each{ |kind, color| chart.data((t "kinds.#{kind}"), category_per_month[:data][kind.to_s], color) }
-    - chart.width_spacing_options(:bar_width => "a", :bar_spacing => "5", :group_spacing => 40)
-
-    - chart.axis :x, :labels => category_per_month[:labels].map{|date| I18n.localize(date, :format => :short) }
-    - chart.axis :y, :range => range
-
-    = image_tag chart.to_url(:chdlp => "t"), {:alt => (t 'stats.loading'), :width => category_wh[0], :height => category_wh[1] }
+  %h4= (category.name rescue 'fara categorie').capitalize
+  = render :partial => 'by_kind_each_month', :locals => { :data => category_per_month, :range => chart_range(values), :wh => [700, 200] }

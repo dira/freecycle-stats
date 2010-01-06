@@ -52,7 +52,8 @@ ro-RO:
     offer_completed: oferta acceptata
   stats:
     global last x months: Activitatea din ultimele {{months}} luni
-    by category: Mesajele, pe categorii
+    by category: Dupa categorie
+    kinds by category: Activitatea pe fiecare categorie
     most active categories: Cele mai active categorii
     last x months: Ultimele {{months}} luni
     loading: Incarcam graficul..
