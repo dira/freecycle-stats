@@ -20,8 +20,8 @@ class Stat < ActiveRecord::Base
 
 private
   def self.messages_in_scope_per_month(nr_months, posts)
-    start_date = (nr_months - 1).months.ago.beginning_of_month.to_date
-    end_date = 0.days.ago.end_of_month.to_date
+    start_date = nr_months.months.ago.beginning_of_month.to_date
+    end_date = 1.month.ago.end_of_month.to_date
 
     data = {}
     labels = []
