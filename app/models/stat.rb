@@ -15,7 +15,7 @@ class Stat < ActiveRecord::Base
   end
 
   def self.messages_per_kind_per_month(category, nr_months)
-    messages_in_scope_per_month(nr_months, Post.by_category_id(category.id))
+    messages_in_scope_per_month(nr_months, Post.by_category_id((category.id rescue nil)))
   end
 
 private
