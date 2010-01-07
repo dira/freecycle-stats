@@ -1,7 +1,9 @@
 class Stat < ActiveRecord::Base
-  def self.messages_per_kind
+  def self.messages_per_kind(nr_months)
      data, labels, categories = [], [], []
-     sorted_frequency = Post.count(:group => :category, :include => :category).map{|k, v| [k, v]}.sort{|a, b| b[1] <=> a[1]}
+     period = period(nr_months)
+     sorted_frequency = Post.count(:group => :category, :include => :category,
+       :conditions => ["sent_date >= ? AND sent_date <= (?)", period[0], period[1]] ).sort{|a, b| b[1] <=> a[1]}
      sorted_frequency.each do |category, nr_messages|
        labels << (category.name rescue nil)
        data << nr_messages
@@ -19,15 +21,19 @@ class Stat < ActiveRecord::Base
   end
 
 private
+  def self.period(last_x_months)
+    [last_x_months.months.ago.beginning_of_month.to_date, 1.month.ago.end_of_month.to_date]
+  end
+
   def self.messages_in_scope_per_month(nr_months, posts)
-    start_date = nr_months.months.ago.beginning_of_month.to_date
-    end_date = 1.month.ago.end_of_month.to_date
+    period = period(nr_months)
+    start_date = period[0]
 
     data = {}
     labels = []
     Post::KIND_MESSAGES.each{|kind| data[kind] = [] }
 
-    while start_date < end_date
+    while start_date < period[1]
       labels << start_date
 
       raw = posts.count(
