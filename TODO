@@ -1,0 +1,8 @@
+admin:
+  make tags joined with category setting
+  smarter tags:
+    - check for nouns only
+    - check for the root of the word - is it a tag or not a tag (put it in a different index?)
+    - multiple word tags
+    - present first words that appear in more posts (most useful if having many posts)
+  search for tags in posts, not for words in tags; performance?
