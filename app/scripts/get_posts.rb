@@ -26,6 +26,7 @@ class MailHeaderFetcher
       @imap.uid_copy(to_move, LABEL_FETCHED)
       @imap.uid_store(to_move, "+FLAGS", [:Deleted])
       flush
+      p '.'
     end
 
     disconnect
