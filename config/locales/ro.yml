@@ -1,0 +1,63 @@
+# rails - translation/localization for time_ago_in_words - Romanian
+ro-RO:
+  datetime:
+    distance_in_words:
+      less_than_x_minutes:
+        one: 'mai putin de un minut'
+        other: 'mai putin de {{count}} minute'
+      x_minutes: 
+        one: 'un minut'
+        other: '{{count}} minute'
+      less_than_x_seconds:
+         one: 'mai putin de o secunda'
+         other: 'mai putin de {{count}} de secunde'
+      half_a_minute:
+         other: 'mai putin de 30 secunde'
+      less_than_x_minutes:
+         one: 'mai putin de un minut'
+         other: 'mai putin de {{count}} minute'
+      x_minutes:
+         one: 'un minut'
+         other: '{{count}} minute'
+      about_x_hours:
+         one: 'o ora'
+         other: '{{count}} ore'
+      x_days:
+         one: 'o zi'
+         other: '{{count}} zile'
+      about_x_months:
+         one: 'o luna'
+         other: '{{count}} luni'
+      x_months:
+         one: 'o luna'
+         other: '{{count}} luni'
+      about_x_years:
+         one: 'un an'
+         other: '{{count}} ani'
+      over_x_years:
+         one: 'mai mult de un an'
+         other: 'mai mult de {{count}} ani'
+  date:
+    month_names: [~, Ianuarie, Februarie, Martie, Aprilie, Mai, Iunie, Iulie, August, Septembrie, Octombrie, Noiembrie, Decembrie]
+    abbr_month_names: [~, Ian, Feb, Mar, Apr, Mai, Iun, Iul, Aug, Sep, Oct, Noi, Dec]
+    abbr_day_names: [Lu, Ma, Mi, Jo, Vi, Sa, Du]
+    day_names: [Luni, Marti, Miercuri, Joi, Vineri, Sambata, Duminica]
+    formats:
+      short: "%B '%y"
+
+  kinds:
+    request: cerere
+    request_completed: cerere indeplinita
+    offer: oferta
+    offer_completed: oferta acceptata
+  stats:
+    global last x months: Activitatea din ultimele {{months}} luni
+    by category: Dupa categorie
+    kinds by category: Activitatea pe fiecare categorie
+    most active categories: Cele mai active categorii
+    last x months: Ultimele {{months}} luni
+    loading: Incarcam graficul..
+  global:
+    title: Freecycle Bucuresti - statistici
+    concept: concept
+    implementation: implementare

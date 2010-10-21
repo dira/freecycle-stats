@@ -1,0 +1,18 @@
+#requests
+  %h3 Ce se cere
+
+  - form_tag search_posts_path do
+    = text_field_tag 'query', params[:query]
+    = hidden_field_tag 'kind', "request"
+    = submit_tag 'Cauta'
+
+  = link_to 'am.. si dau!', group_url, :target => "_blank", :class => "action", :style => "display:none"
+
+  %table
+    %thead
+      %tr
+        %td
+          obiect cautat
+          .continue (continuare)
+    %tbody
+      = render requests
