@@ -2,13 +2,13 @@ require 'md5'
 require 'text'
 
 class Post < ActiveRecord::Base
-  KINDS_TO_KEYWORDS = {
+  MESSAGE_KINDS_TO_KEYWORDS = {
     'offer'             => ['ofer', 'dau'],
     'offer_completed'   => 'dat',
     'request'           => 'caut',
     'request_completed' => 'luat',
-    'admin'             => 'admin'
   }
+  KINDS_TO_KEYWORDS = MESSAGE_KINDS_TO_KEYWORDS.merge({ 'admin' => 'admin' })
 
   enum_field 'kind', KINDS_TO_KEYWORDS.keys + ['unknown']
 

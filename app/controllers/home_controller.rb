@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    redirect_to stats_path
+    @per_month_per_kind = Stat.per_month_per_kind(6)
   end
 end

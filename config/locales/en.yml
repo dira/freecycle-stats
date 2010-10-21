@@ -13,11 +13,11 @@ en:
     offer_completed: accepted offer
   stats:
     loading: Loading...
-    global last x months: Last {{months}} months
+    global last x months: Last %{months} months
     by category: By category
     kinds by category: Activity by category
     most active categories: Most active categories
-    last x months: Last {{months}} months
+    last x months: Last %{months} months
   global:
     title: Freecycle Bucharest - stats
     concept: concept

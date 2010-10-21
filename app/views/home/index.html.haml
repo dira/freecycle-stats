@@ -1,0 +1,13 @@
+%blockquote
+  = freecycle_link(:image)
+  %p
+    %span> "
+    = freecycle_link
+    este un grup destinat tuturor celor care vor sa 'recicleze' bunurile de care dispun in loc sa le arunce. Oferiti ce aveti fie ca este vorba de un scaun, un fax, un pian sau o usa veche, si lista ar putea continua. Sau poate ca sunteti in cautarea unui anumit bun!
+  %p
+    O singura regula de baza: tot ce se ofera trebuie sa fie cu titlu gratuit.
+    %span> "
+
+- require 'google_chart'
+%h2= (t 'stats.global last x months', :months => @per_month_per_kind[:labels].size)
+= render :partial => 'by_kind_each_month', :locals => { :data => @per_month_per_kind, :range => chart_range(@per_month_per_kind[:data].values), :wh => [700, 300] }

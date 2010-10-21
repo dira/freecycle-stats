@@ -18,40 +18,43 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 
 body {
   font: 0.8em/1.2em "Lucida Grande", Calibri, Arial;
-  background-color: #444;
-  color: #3d3d3d; }
+  background-color: #444444;
+  color: #333333; }
 
 #container {
   width: 850px;
-  margin: 0 auto; }
+  margin: 0 auto;
+  background-color: white; }
+  #container #main, #container #footer {
+    padding: 0 50px; }
+  #container #main {
+    min-height: 400px; }
+    #container #main a {
+      background-color: #f27405;
+      color: white;
+      padding: 3px 5px; }
+    #container #main a.minor {
+      background-color: white;
+      color: #f27405;
+      text-decoration: none;
+      padding: 0 0; }
+      #container #main a.minor:hover {
+        text-decoration: underline; }
+  #container #footer {
+    padding: 20px 0 15px;
+    margin-top: 30px;
+    text-align: center;
+    background-color: #2da66d;
+    color: white; }
+    #container #footer .credential {
+      margin: 0 20px;
+      display: inline; }
+    #container #footer a {
+      color: white;
+      font-weight: bold; }
 
-#main, #header, #footer {
-  padding: 0 50px; }
-
-#container {
-  background-color: #fff; }
-
-#main {
-  min-height: 400px; }
-
-#footer {
-  padding-top: 20px;
-  padding-bottom: 15px;
-  text-align: center;
-  background-color: #2da66d;
-  color: white; }
-  #footer .credential {
-    margin: 0 20px;
-    display: inline; }
-  #footer a {
-    color: white;
-    font-weight: bold; }
-
-p, ol, ul, td, input {
-  font-family: "Lucida Grande", Calibri, Arial; }
-
-h1, h2, h3, h4 {
-  font-family: Helvetica,Arial,sans-serif;
+h1, h2 {
+  font-family: Helvetica, Arial, sans-serif;
   line-height: 2;
   font-weight: bold; }
 
@@ -61,36 +64,22 @@ h1 {
   font-size: 2.5em; }
   h1 a {
     text-decoration: none;
-    color: #000; }
+    color: black; }
 
 h2 {
-  font-size: 2em; }
-
-h3 {
   font-size: 1.5em;
-  margin-top: 20px; }
-
-h4 {
-  font-size: 1.2em;
-  margin-top: 20px; }
-
-td {
-  padding: 3px 5px; }
+  margin: 20px 0; }
 
 p {
   margin: 3px 0; }
 
-.none {
-  display: none; }
-
-#main a {
-  background-color: #f27405;
-  color: white;
-  padding: 3px 5px; }
-#main a.minor {
-  background-color: white;
-  color: #f27405;
-  text-decoration: none;
-  padding: 0 0; }
-  #main a.minor:hover {
-    text-decoration: underline; }
+blockquote {
+  margin-bottom: 30px;
+  color: #777777; }
+  blockquote img {
+    float: left;
+    margin-right: 5px;
+    width: 35%; }
+  blockquote p {
+    margin: 0 0 10px;
+    text-align: justify; }

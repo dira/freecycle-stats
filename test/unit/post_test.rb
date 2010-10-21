@@ -44,7 +44,6 @@ class PostTest < ActiveSupport::TestCase
     end
 
     should 'obfuscate author' do
-      # TODO factory not working, why oh why
       assert_not_equal 'name', Post.obfuscate_author('name')
     end
   end

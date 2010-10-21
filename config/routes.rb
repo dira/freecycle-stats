@@ -1,15 +1,6 @@
 FreecycleStats::Application.routes.draw do
   root :to => "home#index"
 
-  resources :post do
-    collection do
-      post 'search'
-    end
-  end
-
-  resources :stats
-
-  #
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

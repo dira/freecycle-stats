@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101021192609) do
+ActiveRecord::Schema.define(:version => 20101021215935) do
 
   create_table "posts", :force => true do |t|
     t.string   "author_md5"
@@ -21,9 +21,6 @@ ActiveRecord::Schema.define(:version => 20101021192609) do
     t.string   "subject_original"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "pair_id"
-    t.boolean  "category_processed", :default => false
-    t.integer  "category_id"
   end
 
 end

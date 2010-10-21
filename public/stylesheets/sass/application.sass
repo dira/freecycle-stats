@@ -19,37 +19,44 @@ table, caption, tbody, tfoot, thead, tr, th, td
 body 
   font: 0.8em/1.2em "Lucida Grande", Calibri, Arial
   background-color: #444
-  color: #3d3d3d
+  color: #333
 
 #container
   width: 850px
   margin: 0 auto
-#main, #header, #footer
-  padding: 0 50px
-
-#container
   background-color: #fff
-#main
-  min-height: 400px
 
-#footer
-  padding-top: 20px 
-  padding-bottom: 15px 
-  text-align: center
-  background-color: #2da66d
-  color: white
-  .credential
-    margin: 0 20px
-    display: inline
-  a
+  #main, #footer
+    padding: 0 50px
+
+  #main
+    min-height: 400px
+    a
+      background-color: #f27405
+      color: white
+      padding: 3px 5px
+    a.minor
+      background-color: white
+      color: #f27405
+      text-decoration: none
+      padding: 0 0
+      &:hover
+        text-decoration: underline
+
+  #footer
+    padding: 20px 0 15px
+    margin-top: 30px
+    text-align: center
+    background-color: #2da66d
     color: white
-    font-weight: bold
-  
+    .credential
+      margin: 0 20px
+      display: inline
+    a
+      color: white
+      font-weight: bold
 
-p, ol, ul, td, input
-  font-family: "Lucida Grande", Calibri, Arial
-
-h1, h2, h3, h4
+h1, h2
   font-family: Helvetica,Arial,sans-serif
   line-height: 2
   font-weight: bold
@@ -61,70 +68,18 @@ h1
     text-decoration: none
     color: #000
 h2
-  font-size: 2em
-h3
   font-size: 1.5em
-  margin-top: 20px
-h4
-  font-size: 1.2em
-  margin-top: 20px
-td
-  padding: 3px 5px
+  margin: 20px 0
 p
   margin: 3px 0
 
-.none
-  display: none
-
-#main 
-  a
-    background-color: #f27405
-    color: white
-    padding: 3px 5px
-  a.minor
-    background-color: white
-    color: #f27405
-    text-decoration: none
-    padding: 0 0
-    &:hover
-      text-decoration: underline
-
-
-  //&:visited  
-    //color: #666 
-  //&a:hover  
-    //color: #fff 
-    //background-color: #000 
-
-//.fieldWithErrors 
-  //padding: 2px
-  //background-color: red
-  //display: table
-
-//#errorExplanation 
-  //width: 400px
-  //border: 2px solid red
-  //padding: 7px
-  //padding-bottom: 12px
-  //margin-bottom: 20px
-  //background-color: #f0f0f0
-
-//#errorExplanation h2 
-  //text-align: left
-  //font-weight: bold
-  //padding: 5px 5px 5px 15px
-  //font-size: 12px
-  //margin: -7px
-  //background-color: #c00
-  //color: #fff
-
-//#errorExplanation p 
-  //color: #333
-  //margin-bottom: 0
-  //padding: 5px
-
-//#errorExplanation ul li 
-  //font-size: 12px
-  //list-style: square
-
-
+blockquote
+  margin-bottom: 30px
+  color: #777
+  img
+    float: left
+    margin-right: 5px
+    width: 35%
+  p
+    margin: 0 0 10px
+    text-align: justify
