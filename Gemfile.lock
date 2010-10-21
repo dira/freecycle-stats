@@ -44,6 +44,8 @@ GEM
       mime-types
       treetop (>= 1.4.5)
     mime-types (1.16)
+    mocha (0.9.8)
+      rake
     mysql (2.7)
     polyglot (0.3.1)
     rack (1.2.1)
@@ -79,6 +81,7 @@ DEPENDENCIES
   gchartrb
   giraffesoft-enum_field
   haml
+  mocha
   mysql (= 2.7)
   rails (= 3.0.1)
   shoulda

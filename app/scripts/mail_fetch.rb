@@ -44,25 +44,11 @@ class MailFetcher
 end
 
 class Fetcher
-  def self.create_post(mail)
-    hash = Post.parse_subject(mail.subject)
-    hash[:message_id] = mail.message_id
-    from = "#{mail.from[0].mailbox || mail.from[0].name}@#{mail.from[0].host}"
-    hash[:author_md5] = Post.obfuscate_author(from)
-    hash[:sent_date] = mail.date
-
-    Post.find_or_create_by_message_id(hash)
-    true
-  rescue Error => err
-    p 'Error:', err, mail
-    false
-  end
-
   def self.fetch
     config = YAML.load_file("#{Rails.root.to_s}/config/mails.yml")
 
     MailFetcher.new(config['mail_server']).retrieve_messages do |mail|
-      MailFetcher.create_post(mail)
+      Post.create_from_mail(mail)
     end
   end
 end

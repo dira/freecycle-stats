@@ -10,10 +10,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101021215935) do
+ActiveRecord::Schema.define(:version => 20101021220851) do
 
   create_table "posts", :force => true do |t|
-    t.string   "author_md5"
+    t.string   "author"
     t.date     "sent_date"
     t.string   "message_id"
     t.string   "kind"
