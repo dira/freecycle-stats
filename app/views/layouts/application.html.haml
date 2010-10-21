@@ -5,7 +5,9 @@
     %title= (t 'global.title')
 
     = stylesheet_link_tag "application"
-    = javascript_include_tag "vendor/prototype"
+    = javascript_include_tag :defaults
+    = csrf_meta_tag
+
     = yield :head
 
   %body

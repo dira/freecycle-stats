@@ -1,4 +1,23 @@
 FreecycleStats::Application.routes.draw do
+  root :to => "home#index"
+  resources :post do
+    collection do
+      post 'search'
+    end
+  end
+
+  resources :stats
+
+  namespace :admin do
+    root :to => "posts#index"
+    resources :posts, :collection => { :search => :post }
+    resources :tag_candidates, :collection => { :disable_all => :post, :filter_words => :get }
+  end
+  get 'session' => 'sessions#create', :as => 'open_id_complete'
+  resource  :session
+  get 'login' => 'sessions#new', :as => 'login'
+  get 'logout' => 'sessions#destroy', :as => 'logout'
+  #
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
