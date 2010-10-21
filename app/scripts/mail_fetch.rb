@@ -5,8 +5,8 @@ class MailFetcher
   FETCHED = "#{Rails.env}/fetched"
 
   def initialize(config)
-    @imap = Net::IMAP.new(config['server'], config['port'], true)
-    @imap.login(config['username'], config['password'])
+    @imap = Net::IMAP.new(config[:server], config[:port], true)
+    @imap.login(config[:username], config[:password])
   end
 
   def retrieve_messages
@@ -45,9 +45,14 @@ end
 
 class Fetcher
   def self.fetch
-    config = YAML.load_file("#{Rails.root.to_s}/config/mails.yml")
+    config = {
+      :server   => 'imap.gmail.com',
+      :port     =>  993,
+      :username => ENV['FREECYCLE_STATS_username'],
+      :password => ENV['FREECYCLE_STATS_password']
+    }
 
-    MailFetcher.new(config['mail_server']).retrieve_messages do |mail|
+    MailFetcher.new(config).retrieve_messages do |mail|
       Post.create_from_mail(mail)
     end
   end
