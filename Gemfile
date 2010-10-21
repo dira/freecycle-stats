@@ -13,4 +13,6 @@ gem 'haml'
 gem "gchartrb"
 
 group :test do
+  gem 'factory_girl'
+  gem 'shoulda'
 end
