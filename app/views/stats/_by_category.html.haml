@@ -1,12 +1,13 @@
-- GoogleChart::BarChart.new("#{wh[0]}x#{wh[1]}", (t 'stats.by category'), :horizontal, false) do |chart|
-  - range = chart_range(data[:data])
+- if data[:data].present?
+  - GoogleChart::BarChart.new("#{wh[0]}x#{wh[1]}", (t 'stats.by category'), :horizontal, false) do |chart|
+    - range = chart_range(data[:data])
 
-  - chart.data '', data[:data]
-  - chart.data_encoding = :text
-  - chart.max_value range.max
-  - chart.show_legend = false
+    - chart.data '', data[:data]
+    - chart.data_encoding = :text
+    - chart.max_value range.max
+    - chart.show_legend = false
 
-  - chart.axis   :x, :range => range
-  - chart.axis :top, :range => range
-  - chart.axis   :y, :labels => data[:labels].reverse
-  = chart_image chart.to_url, wh
+    - chart.axis   :x, :range => range
+    - chart.axis :top, :range => range
+    - chart.axis   :y, :labels => data[:labels].reverse
+    = chart_image chart.to_url, wh
