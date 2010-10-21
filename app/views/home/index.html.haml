@@ -9,5 +9,14 @@
     %span> "
 
 - require 'google_chart'
-%h2= (t 'stats.global last x months', :months => @per_month_per_kind[:labels].size)
-= render :partial => 'by_kind_each_month', :locals => { :data => @per_month_per_kind, :range => chart_range(@per_month_per_kind[:data].values), :wh => [700, 300] }
+.chart
+  %h2= (t 'stats.global last x months', :months => @per_month_per_kind[:labels].size)
+  = render :partial => 'by_kind_each_month', :locals => { :data => @per_month_per_kind, :range => chart_range(@per_month_per_kind[:data].values), :wh => [700, 300] }
+
+%h2 Ultimele oferte
+%ol
+  = render :partial => "post", :collection => @requests
+
+%h2 Ultimele cereri
+%ol
+  = render :partial => "post", :collection => @requests

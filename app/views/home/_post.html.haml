@@ -1,0 +1,6 @@
+%li
+  = post.subject
+  %span.when
+    (acum&nbsp;
+    %span>= time_ago_in_words(post.sent_date)
+    )
