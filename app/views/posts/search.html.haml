@@ -1,8 +1,0 @@
-- content_for :head do
-  = stylesheet_link_tag "posts"
-  = javascript_include_tag "posts/index"
-    
-%h2 Rezultatele cautarii
-#dashboard
-  = render :partial => "offers",   :locals => { :offers   => (params[:kind] == 'offer'   ? @results : []) }
-  = render :partial => "requests", :locals => { :requests => (params[:kind] == 'request' ? @results : []) }

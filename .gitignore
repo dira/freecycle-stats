@@ -1,6 +1,4 @@
-log/*
-tmp/*
-backup
-config/session_secret.txt
-config/database.yml
-config/mails.yml
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/**/*

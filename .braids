@@ -1,8 +1,0 @@
---- 
-vendor/plugins/enum_field: 
-  squashed: true
-  url: git://github.com/dira/enum_field.git
-  branch: master
-  type: git
-  revision: e7794152ec38c16227ffb650fef2ec01bacda326
-  remote: braid/vendor/plugins/enum-field
