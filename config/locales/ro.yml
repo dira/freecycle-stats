@@ -3,40 +3,40 @@ ro-RO:
   datetime:
     distance_in_words:
       less_than_x_minutes:
-        one: 'mai putin de un minut'
-        other: 'mai putin de %{count} minute'
+        one: 'acum acum mai putin de un minut'
+        other: 'acum mai putin de %{count} minute'
       x_minutes: 
-        one: 'un minut'
-        other: '%{count} minute'
+        one: 'acum un minut'
+        other: 'acum %{count} minute'
       less_than_x_seconds:
-         one: 'mai putin de o secunda'
-         other: 'mai putin de %{count} de secunde'
+         one: 'acum mai putin de o secunda'
+         other: 'acum mai putin de %{count} de secunde'
       half_a_minute:
-         other: 'mai putin de 30 secunde'
+         other: 'acum mai putin de 30 secunde'
       less_than_x_minutes:
-         one: 'mai putin de un minut'
-         other: 'mai putin de %{count} minute'
+         one: 'acum mai putin de un minut'
+         other: 'acum mai putin de %{count} minute'
       x_minutes:
-         one: 'un minut'
-         other: '%{count} minute'
+         one: 'acum un minut'
+         other: 'acum %{count} minute'
       about_x_hours:
-         one: 'o ora'
-         other: '%{count} ore'
+         one: 'acum o ora'
+         other: 'acum %{count} ore'
       x_days:
-         one: 'o zi'
-         other: '%{count} zile'
+         one: 'acum o zi'
+         other: 'acum %{count} zile'
       about_x_months:
-         one: 'o luna'
-         other: '%{count} luni'
+         one: 'acum o luna'
+         other: 'acum %{count} luni'
       x_months:
-         one: 'o luna'
-         other: '%{count} luni'
+         one: 'acum o luna'
+         other: 'acum %{count} luni'
       about_x_years:
-         one: 'un an'
-         other: '%{count} ani'
+         one: 'acum un an'
+         other: 'acum %{count} ani'
       over_x_years:
-         one: 'mai mult de un an'
-         other: 'mai mult de %{count} ani'
+         one: 'acum mai mult de un an'
+         other: 'acum mai mult de %{count} ani'
   date:
     month_names: [~, Ianuarie, Februarie, Martie, Aprilie, Mai, Iunie, Iulie, August, Septembrie, Octombrie, Noiembrie, Decembrie]
     abbr_month_names: [~, Ian, Feb, Mar, Apr, Mai, Iun, Iul, Aug, Sep, Oct, Noi, Dec]
@@ -51,13 +51,12 @@ ro-RO:
     offer: oferta
     offer_completed: oferta acceptata
   stats:
-    global last x months: Activitatea din ultimele %{months} luni
-    by category: Dupa categorie
-    kinds by category: Activitatea pe fiecare categorie
-    most active categories: Cele mai active categorii
-    last x months: Ultimele %{months} luni
     loading: Incarcam graficul..
+    global last x months: Activitatea din ultimele %{months} luni
   global:
     title: Freecycle Bucuresti - statistici
     concept: concept
     implementation: implementare
+    freecycle_mission:  "este un grup destinat tuturor celor care vor sa 'recicleze' bunurile de care dispun in loc sa le arunce. Oferiti ce aveti fie ca este vorba de un scaun, un fax, un pian sau o usa veche, si lista ar putea continua. Sau poate ca sunteti in cautarea unui anumit bun! O singura regula de baza: tot ce se ofera trebuie sa fie cu titlu gratuit."
+    last_offers: Ultimele oferte
+    last_requests: Ultimele cereri

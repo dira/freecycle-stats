@@ -79,7 +79,15 @@ li {
 
 blockquote {
   margin-bottom: 30px;
-  color: #777777; }
+  color: #777777;
+  min-height: 75px;
+  zoom: 1; }
+  blockquote:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden; }
   blockquote img {
     float: left;
     margin-right: 5px;
