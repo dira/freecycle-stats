@@ -1,0 +1,19 @@
+# Mission
+
+[Freecycle](http://www.freecycle.org/) is a closed environment due to user privacy reasons. Statistics and the kind of objects that are offered/requested should be not.
+
+This project aims to make useful information available to non-registered users. It applies to my hometown: Bucharest, Romania.
+
+The long term plan is to provide:
+
+* statistics about the evolution of offers and requests, and their degree of fulfillment
+* statistics about the evolution of offers and requests by category (furniture, electronics, etc.)
+* the list of objects that are still available
+
+# Implementation
+
+I currently fetch the email headers from the Freecycle Bucharest mailing group and [present aggregated information](http://freecycle-stats.heroku.com/?locale=en) about the dynamics of offers and requests in the last months. I also include the last offers and requests.
+
+I implemented a semi-functional algorithm for semi-automatic categorization, based on setting the category on individual words. I decided to drop it for the moment as it required a lot of categorization work and also suffered from linguistic ambiguities ('drilling machine' and 'washing machine') that made it not so useful.
+
+I also worked on an algorithm for automatically matching messages. The group rules state that the kind of message (offer, given, request, received) must be stated in each message's subject, and the users respect that. So, matching each *given* with its *offer*, and each *received* with its *request* seemed to be a simple problem, as data is abbundent: the subject plus an unique identifier for each user plus the timing of messages. However, in practice this didn't work so well either, as natural language matching on short sentences is not so easy (especially in Romanian, which is much more rule-adverse than English). Also, some people combined objects when offering ("offer: books and old camera") and then posted separate messages when giving them away ("given: camera", "given: books"). This and other 'anomalies' made categorization difficult, so I dropped this one too until I come with a better solution.
