@@ -10,6 +10,10 @@ The long term plan is to provide:
 * statistics about the evolution of offers and requests by category (furniture, electronics, etc.)
 * the list of objects that are still available
 
+# Status
+
+Development froze in 2010, as the site is not of much practical use.
+
 # Implementation
 
 I currently fetch the email headers from the Freecycle Bucharest mailing group and [present aggregated information](http://freecycle-stats.heroku.com/?locale=en) about the dynamics of offers and requests in the last months. I also include the last offers and requests.
